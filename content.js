@@ -45,7 +45,6 @@ if (!document.getElementById('insta-bot-toggle')) {
         toggleBtn.style.display = 'none';
     });
 }
-
 window.addEventListener("message", (event) => {
     if (event.data?.action === "closeOverlay") {
         overlay.style.display = "none";
@@ -63,11 +62,43 @@ function getInstagramUsername() {
     return null;
 }
 
+// fonction avec risque de ban si trop d'appels
 async function getUserId(username) {
     const res = await fetch(`https://www.instagram.com/web/search/topsearch/?query=${username}`);
     const data = await res.json();
     const user = data.users.find(u => u.user.username.toLowerCase() === username.toLowerCase());
     return user?.user?.pk || null;
+}
+
+// fonction avec risque de ban si trop d'appels
+async function fetchProfileDetails(username) {
+    try {
+        const res = await fetch(`https://www.instagram.com/api/v1/users/web_profile_info/?username=${encodeURIComponent(username)}`, {
+            credentials: 'include',
+            headers: {
+                'x-ig-app-id': '936619743392459'
+            }
+        });
+        const json = await res.json();
+        return json?.data?.user || {};
+    } catch (e) {
+        return {};
+    }
+}
+
+async function fetchFollowers(userId, after = null) {
+    const variables = {
+        id: userId,
+        include_reel: false,
+        fetch_mutual: true,
+        first: 50,
+        after: after
+    };
+
+    const url = `https://www.instagram.com/graphql/query/?query_hash=c76146de99bb02f6415203be841dd25a&variables=${encodeURIComponent(JSON.stringify(variables))}`;
+    const res = await fetch(url, { credentials: "include" });
+    const data = await res.json();
+    return data;
 }
 
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
@@ -76,9 +107,22 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
         sendResponse({ username: username || null });
         return true;
     }
-    if (msg.type === "getUserId"){
+
+    if (msg.type === "getUserId") {
         console.log(msg.username)
         getUserId(msg.username).then(id => sendResponse({ userId: id || null }));
+        return true;
+    }
+
+    if (msg.type === "fetchProfileDetails") {
+        console.log(msg.username)
+        fetchProfileDetails(msg.username).then(data => sendResponse({ userData: data || null }));
+        return true;
+    }
+
+    if (msg.type === "fetchFollowers") {
+        console.log(msg.userId, msg.after)
+        fetchFollowers(msg.userId).then(data => sendResponse({ userData: data || null }));
         return true;
     }
 });
