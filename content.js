@@ -54,8 +54,6 @@ window.addEventListener("message", (event) => {
     }
 });
 
-// alert("hih ak fel instagram !")
-
 function getInstagramUsername() {
     const path = window.location.pathname;
     const match = path.match(/^\/([^\/\?\#]+)\/?$/);
@@ -65,10 +63,22 @@ function getInstagramUsername() {
     return null;
 }
 
+async function getUserId(username) {
+    const res = await fetch(`https://www.instagram.com/web/search/topsearch/?query=${username}`);
+    const data = await res.json();
+    const user = data.users.find(u => u.user.username.toLowerCase() === username.toLowerCase());
+    return user?.user?.pk || null;
+}
+
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     if (msg.type === "getInstagramUsername") {
         const username = getInstagramUsername();
         sendResponse({ username: username || null });
+        return true;
+    }
+    if (msg.type === "getUserId"){
+        console.log(msg.username)
+        getUserId(msg.username).then(id => sendResponse({ userId: id || null }));
         return true;
     }
 });
