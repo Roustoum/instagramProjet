@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@utility flex-center {
+    @apply flex justify-center items-center;
+}

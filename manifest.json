@@ -9,12 +9,13 @@
         "128": "assets/icon128.png"
     },
     "action": {
-        "default_title": "test",
-        "default_popup": "popup.html"
+        "default_title": "test"
     },
     "web_accessible_resources": [
         {
             "resources": [
+                "popup.html", "popup.js",
+                "/*",
                 "assets/*",
                 "*.js",
                 "*.png",
