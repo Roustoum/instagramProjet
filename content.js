@@ -125,7 +125,6 @@ function getInstagramUsername() {
     onUrlChange();
 })();
 
-
 // function helpers
 function shortcodeToInstaID(shortcode) {
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
@@ -236,7 +235,9 @@ async function getPostCommenters(postShort, after = null, limit = 50) {
     const variables = encodeURIComponent(JSON.stringify({
         shortcode: postShort,
         first,
-        after
+        after,
+        fetch_hidden_comments: true,
+        include_hidden_comments: true
     }));
 
     const fetchUrl = `https://www.instagram.com/graphql/query/?query_hash=${query_hash}&variables=${variables}`;
@@ -247,7 +248,8 @@ async function getPostCommenters(postShort, after = null, limit = 50) {
             "X-Csrftoken": csrfToken,
             "x-instagram-ajax": "1010212815",
             "x-asbd-id": "129477",
-            "x-ig-app-id": "936619743392459"
+            "x-ig-app-id": "936619743392459",
+            "x-requested-with": "XMLHttpRequest"
         }
     });
     const data = await response.json();
