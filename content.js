@@ -1,57 +1,92 @@
-let overlay, toggleBtn;
-if (!document.getElementById('insta-bot-toggle')) {
-    toggleBtn = document.createElement('div');
-    toggleBtn.id = 'insta-bot-toggle';
-    toggleBtn.innerHTML = `<img src="${chrome.runtime.getURL('assets/icon48.png')}" alt="Bot" />`;
+(() => {
+    // --- 🔁 Détection navigation interne (SPA) ---
+    let lastUrl = location.href;
 
-    // 🔧 Style the floating icon so it’s always visible
-    Object.assign(toggleBtn.style, {
-        position: 'fixed',
-        top: '10px',
-        right: '20px',
-        zIndex: '10000',
-        width: '60px',
-        height: '60px',
-        cursor: 'pointer',
-        backgroundColor: 'transparent',
-        borderRadius: '50%',
-        boxShadow: '0 2px 12px rgba(0, 0, 0, 0.2)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+    const observer = new MutationObserver(() => {
+        if (location.href !== lastUrl) {
+            lastUrl = location.href;
+            onUrlChange(); // relance ton code quand l’URL change
+        }
     });
 
-    document.body.appendChild(toggleBtn);
+    observer.observe(document, { childList: true, subtree: true });
 
-    // 🖼️ Create overlay iframe for full UI
-    overlay = document.createElement('iframe');
-    overlay.id = 'insta-bot-ui';
-    overlay.src = chrome.runtime.getURL('./popup.html');
-    Object.assign(overlay.style, {
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        border: 'none',
-        zIndex: '9999',
-        display: 'none',
-        height: '100vh',
-    });
-    document.body.appendChild(overlay);
+    // --- 🧠 Fonction principale ---
+    function onUrlChange() {
+        const parts = location.pathname.split('/').filter(Boolean);
+        const isProfilePage = parts.length === 1;
 
-    // 📂 Open the extension UI
-    toggleBtn.addEventListener('click', () => {
-        overlay.style.display = 'block';
-        overlay.style.pointerEvents = 'auto';
-        toggleBtn.style.display = 'none';
-    });
-}
-window.addEventListener("message", (event) => {
-    if (event.data?.action === "closeOverlay") {
-        overlay.style.display = "none";
-        overlay.style.pointerEvents = "none";
-        toggleBtn.style.display = "flex";
+        // Supprime les anciens éléments si tu quittes le profil
+        const oldToggle = document.getElementById('insta-bot-toggle');
+        const oldOverlay = document.getElementById('insta-bot-ui');
+        if (oldToggle && !isProfilePage) oldToggle.remove();
+        if (oldOverlay && !isProfilePage) oldOverlay.remove();
+
+
+
+        // Évite les doublons
+        if (document.getElementById('insta-bot-toggle')) return;
+
+        // --- 🚀 Création du bouton et overlay ---
+        const toggleBtn = document.createElement('div');
+        toggleBtn.id = 'insta-bot-toggle';
+        toggleBtn.innerHTML = `<img src="${chrome.runtime.getURL('assets/icon48.png')}" alt="Bot" />`;
+
+        Object.assign(toggleBtn.style, {
+            position: 'fixed',
+            top: '10px',
+            right: '20px',
+            zIndex: '10000',
+            width: '60px',
+            height: '60px',
+            cursor: 'pointer',
+            backgroundColor: 'transparent',
+            borderRadius: '50%',
+            boxShadow: '0 2px 12px rgba(0, 0, 0, 0.2)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+        });
+
+        const overlay = document.createElement('iframe');
+        overlay.id = 'insta-bot-ui';
+        if (isProfilePage) {
+            overlay.src = chrome.runtime.getURL('./popup.html');
+        }else{
+            overlay.src = chrome.runtime.getURL('./test.html');
+        }
+        Object.assign(overlay.style, {
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            border: 'none',
+            zIndex: '9999',
+            display: 'none',
+            height: '100vh',
+        });
+
+        document.body.appendChild(toggleBtn);
+        document.body.appendChild(overlay);
+
+        toggleBtn.addEventListener('click', () => {
+            overlay.style.display = 'block';
+            overlay.style.pointerEvents = 'auto';
+            toggleBtn.style.display = 'none';
+        });
+
+        window.addEventListener('message', (event) => {
+            if (event.data?.action === 'closeOverlay') {
+                overlay.style.display = 'none';
+                overlay.style.pointerEvents = 'none';
+                toggleBtn.style.display = 'flex';
+            }
+        });
     }
-});
+
+    // 🟢 Démarrage initial
+    onUrlChange();
+})();
+
 
 // function helpers
 function shortcodeToInstaID(shortcode) {
