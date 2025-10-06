@@ -9,24 +9,15 @@
         "128": "assets/icon128.png"
     },
     "action": {
-        "default_title": "test"
+        "default_title": "test",
+        "default_popup": "post.html"
     },
-    "web_accessible_resources": [
-        {
-            "resources": [
-                "popup.html", "popup.js",
-                "/*",
-                "assets/*",
-                "*.js",
-                "*.png",
-                "*.css",
-                "*.json",
-                "*.html"
-            ],
-            "matches": [
-                "<all_urls>"
-            ]
-        }
+    "permissions": [
+        "tabs",
+        "activeTab"
+    ],
+    "host_permissions": [
+        "https://*.instagram.com/*"
     ],
     "content_scripts": [
         {
@@ -39,13 +30,26 @@
             "run_at": "document_idle"
         }
     ],
-    "permissions": [
-        "tabs"
-    ],
-    "host_permissions": [
-        "https://*.instagram.com/*"
-    ],
     "background": {
         "service_worker": "background.js"
-    }
+    },
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "popup.html",
+                "popup.js",
+                "post.html",
+                "post.js",
+                "assets/*",
+                "*.js",
+                "*.png",
+                "*.css",
+                "*.json",
+                "*.html"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
+    ]
 }

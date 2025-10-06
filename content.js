@@ -1,3 +1,39 @@
+function getPostID() {
+    const url = window.location.href;
+    let shorty;
+    if (url.includes('/p/')) {
+        shorty = url.split('/p/')[1].split('/')[0];
+    } else if (url.includes('/reel/')) {
+        shorty = url.split('/reel/')[1].split('/')[0];
+    } else {
+        return null;
+    }
+    const mediaId = shortcodeToInstaID(shorty);
+    return mediaId;
+}
+
+function getPostShortcode() {
+    const url = window.location.href;
+    let shorty;
+    if (url.includes('/p/')) {
+        shorty = url.split('/p/')[1].split('/')[0];
+    } else if (url.includes('/reel/')) {
+        shorty = url.split('/reel/')[1].split('/')[0];
+    } else {
+        return null;
+    }
+    return shorty;
+}
+
+function getInstagramUsername() {
+    const path = window.location.pathname;
+    const match = path.match(/^\/([^\/\?\#]+)\/?$/);
+    if (match && !['explore', 'accounts', 'direct', 'reels'].includes(match[1])) {
+        return match[1];
+    }
+    return null;
+}
+
 (() => {
     // --- 🔁 Détection navigation interne (SPA) ---
     let lastUrl = location.href;
@@ -5,6 +41,7 @@
     const observer = new MutationObserver(() => {
         if (location.href !== lastUrl) {
             lastUrl = location.href;
+            console.log("URL changed to: ", lastUrl, getInstagramUsername(), getPostID());
             onUrlChange(); // relance ton code quand l’URL change
         }
     });
@@ -13,14 +50,14 @@
 
     // --- 🧠 Fonction principale ---
     function onUrlChange() {
-        const parts = location.pathname.split('/').filter(Boolean);
-        const isProfilePage = parts.length === 1;
-
+        const username = getInstagramUsername();
+        const postId = getPostID();
+        console.log("Current username:", username, " postId:", postId);
         // Supprime les anciens éléments si tu quittes le profil
         const oldToggle = document.getElementById('insta-bot-toggle');
         const oldOverlay = document.getElementById('insta-bot-ui');
-        if (oldToggle && !isProfilePage) oldToggle.remove();
-        if (oldOverlay && !isProfilePage) oldOverlay.remove();
+        if (oldToggle) oldToggle.remove();
+        if (oldOverlay) oldOverlay.remove();
 
 
 
@@ -50,10 +87,11 @@
 
         const overlay = document.createElement('iframe');
         overlay.id = 'insta-bot-ui';
-        if (isProfilePage) {
+
+        if (username) {
             overlay.src = chrome.runtime.getURL('./popup.html');
-        }else{
-            overlay.src = chrome.runtime.getURL('./test.html');
+        } else if (postId) {
+            overlay.src = chrome.runtime.getURL('./post.html');
         }
         Object.assign(overlay.style, {
             position: 'fixed',
@@ -106,15 +144,6 @@ function getCsrfFromCookie() {
 }
 
 //---------------------------------------------------
-
-function getInstagramUsername() {
-    const path = window.location.pathname;
-    const match = path.match(/^\/([^\/\?\#]+)\/?$/);
-    if (match && !['explore', 'accounts', 'direct', 'reels'].includes(match[1])) {
-        return match[1];
-    }
-    return null;
-}
 
 // fonction avec risque de ban si trop d'appels
 async function getUserId(username) {
@@ -169,20 +198,6 @@ async function fetchFollowing(userId, after = null) {
     return data;
 }
 
-async function getPostID() {
-    const url = window.location.href;
-    let shorty;
-    if (url.includes('/p/')) {
-        shorty = url.split('/p/')[1].split('/')[0];
-    } else if (url.includes('/reel/')) {
-        shorty = url.split('/reel/')[1].split('/')[0];
-    } else {
-        return null;
-    }
-    const mediaId = shortcodeToInstaID(shorty);
-    return mediaId;
-}
-
 async function getPostLikers(postId, max_id = null) {
     let csrfToken = getCsrfFromCookie();
     if (!csrfToken) {
@@ -208,6 +223,36 @@ async function getPostLikers(postId, max_id = null) {
     return data;
 }
 
+async function getPostCommenters(postShort, after = null, limit = 50) {
+    const query_hash = "97b41c52301f77ce508f55e66d17620e";
+    let count = 0;
+    let csrfToken = getCsrfFromCookie();
+    if (!csrfToken) {
+        console.log("pas de csrftoken !")
+        return null;
+    }
+    console.log(postShort, after, limit)
+    const first = Math.min(50, limit - count);
+    const variables = encodeURIComponent(JSON.stringify({
+        shortcode: postShort,
+        first,
+        after
+    }));
+
+    const fetchUrl = `https://www.instagram.com/graphql/query/?query_hash=${query_hash}&variables=${variables}`;
+    const response = await fetch(fetchUrl, {
+        method: "GET",
+        credentials: "include",
+        headers: {
+            "X-Csrftoken": csrfToken,
+            "x-instagram-ajax": "1010212815",
+            "x-asbd-id": "129477",
+            "x-ig-app-id": "936619743392459"
+        }
+    });
+    const data = await response.json();
+    return data;
+}
 
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     if (msg.type === "getInstagramUsername") {
@@ -223,7 +268,15 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     }
 
     if (msg.type === "getPostID") {
-        getPostID().then(data => sendResponse({ postId: data || null }));
+        console.log("getting post id")
+        const postId = getPostID()
+        sendResponse({ postId: postId || null });
+        return true;
+    }
+    if (msg.type === "getPostShortcode") {
+        console.log("getting post Shortcode")
+        const postShort = getPostShortcode()
+        sendResponse({ postShort: postShort || null });
         return true;
     }
 
@@ -251,5 +304,9 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
         return true;
     }
 
-
+    if(msg.type === "getPostCommenters") {
+        console.log(msg.postShort, msg.after, msg.limit)
+        getPostCommenters(msg.postShort, msg.after, msg.limit).then(data => sendResponse({ PostCommenters: data || null }));
+        return true;
+    }
 });
