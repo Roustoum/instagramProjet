@@ -8,6 +8,36 @@ closeBtn.addEventListener("click", () => {
 let username = null;
 let userId = null;
 
+// async function getUserDetails(userId) {
+//     const csrfToken = document.cookie.match(/csrftoken=([^;]+)/)?.[1];
+    
+//     // Étape 1: ID -> Username
+//     const res1 = await fetch(`https://i.instagram.com/api/v1/users/${userId}/info/`, {
+//       headers: {
+//         "x-csrftoken": csrfToken,
+//         "x-ig-app-id": "936619743392459"
+//       },
+//       credentials: "include"
+//     });
+//     const data1 = await res1.json();
+//     console.log(data1);
+// }
+
+getUserDetails("60880119431");
+
+function getCurrentUserId() {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        chrome.tabs.sendMessage(tabs[0].id, { type: "getCurrentUser" }, (response) => {
+            if (chrome.runtime.lastError) {
+                console.error("Erreur:", chrome.runtime.lastError.message);
+                return;
+            }
+            userId = response.userData;
+            document.getElementById("text").innerHTML +=
+                JSON.stringify(response.userData, null, 2) || "No current user";
+        });
+    });
+}
 function getUserName() {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         chrome.tabs.sendMessage(tabs[0].id, { type: "getInstagramUsername" }, (response) => {
@@ -108,7 +138,50 @@ function getFollowing() {
     }
 }
 
+function followUser() {
+    if (userId !== null) {
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            chrome.tabs.sendMessage(
+                tabs[0].id,
+                { type: "followUser", userId: userId },
+                (response) => {
+                    if (chrome.runtime.lastError) {
+                        console.error("Erreur:", chrome.runtime.lastError.message);
+                        return;
+                    }
+                    console.log("Follow response:", response.success);
+                    document.getElementById("text").innerHTML +=
+                        response.success || "No response";
+                }
+            );
+        });
+    }
+}
 
+function unfollowUser() {
+    if (userId !== null) {
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            chrome.tabs.sendMessage(
+                tabs[0].id,
+                { type: "unfollowUser", userId: userId },
+                (response) => {
+                    if (chrome.runtime.lastError) {
+                        console.error("Erreur:", chrome.runtime.lastError.message);
+                        return;
+                    }
+                    console.log("Unfollow response:", response.success);
+                    document.getElementById("text").innerHTML +=
+                        response.success || "No response";
+                }
+            );
+        });
+    }
+}
+
+
+document.getElementById('btn-getCurrentUser').addEventListener('click', () => {
+    getCurrentUserId();
+});
 
 document.getElementById('btn-userName').addEventListener('click', () => {
     getUserName();
@@ -129,3 +202,12 @@ document.getElementById('btn-userFollowrs').addEventListener('click', () => {
 document.getElementById('btn-userFollowing').addEventListener('click', () => {
     getFollowing();
 });
+
+document.getElementById('btn-followUser').addEventListener('click', () => {
+    followUser();
+});
+
+document.getElementById('btn-unfollowUser').addEventListener('click', () => {
+    unfollowUser();
+});
+

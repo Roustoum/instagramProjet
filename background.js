@@ -19,3 +19,8 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
         }
     }
 });
+
+chrome.action.onClicked.addListener(async () => {
+    const url = chrome.runtime.getURL('dashboard.html');
+    await chrome.tabs.create({ url });
+});

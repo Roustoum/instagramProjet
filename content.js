@@ -93,6 +93,10 @@ function getInstagramUsername() {
         } else if (postId) {
             overlay.src = chrome.runtime.getURL('./post.html');
         }
+        overlay.addEventListener('load', () => {
+            // envoie un message à l'intérieur de l’iframe
+            overlay.contentWindow.postMessage({ bgColor: 'red' }, '*');
+        });
         Object.assign(overlay.style, {
             position: 'fixed',
             top: 0,
@@ -101,7 +105,12 @@ function getInstagramUsername() {
             zIndex: '9999',
             display: 'none',
             height: '100vh',
+            isolation: 'isolate',
+            mixBlendMode: 'normal',
+            filter: 'none',
+            colorScheme: 'light',
         });
+        overlay.style.setProperty('background-color', 'transparent', 'important');
 
         document.body.appendChild(toggleBtn);
         document.body.appendChild(overlay);
@@ -256,7 +265,98 @@ async function getPostCommenters(postShort, after = null, limit = 50) {
     return data;
 }
 
+async function followUser(userId) {
+    try {
+        const csrfToken = getCsrfFromCookie();
+        if (!csrfToken) {
+            console.log("pas de csrftoken !")
+            return false;
+        }
+
+        const res = await fetch(`https://www.instagram.com/web/friendships/${userId}/follow/`, {
+            method: 'POST',
+            headers: {
+                'x-csrftoken': csrfToken,
+                'accept': '*/*',
+                'content-type': 'application/x-www-form-urlencoded',
+                'x-ig-app-id': '936619743392459', // standard IG app id
+            },
+            credentials: 'include',
+        });
+
+        if (res.ok) {
+            console.log(`✅ Followed User ID: ${userId}`);
+            return true;
+        } else {
+            const errorText = await res.text();
+            console.log(`❌ Failed to follow ${userId}:`, errorText);
+            return false;
+        }
+    } catch (error) {
+        console.log('❌ Follow User API Error:', error);
+        return false;
+    }
+}
+
+async function getCurrentUserId() {
+    const userId = document.cookie
+        .split('; ')
+        .find(row => row.startsWith('ds_user_id='))
+        ?.split('=')[1] || '';
+    return userId;
+}
+
+async function unfollowUser(userId) {
+
+    const csrfToken = getCsrfFromCookie();
+    if (!csrfToken) {
+        console.log("pas de csrftoken !")
+        return false;
+    }
+
+    const url = `https://www.instagram.com/web/friendships/${userId}/unfollow/`;
+    try {
+        const res = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'x-csrftoken': csrfToken,
+                'accept': '*/*',
+                'content-type': 'application/x-www-form-urlencoded',
+                'x-ig-app-id': '936619743392459',
+                // 'referer': 'https://www.instagram.com/', // Optional, sometimes helps with IG
+            },
+            credentials: 'include',
+        });
+
+        // Success?
+        if (res.ok) {
+            console.log(`✅ Unfollowed User ID: ${userId}`);
+            return { success: true };
+        }
+
+        // Fail with IG response
+        let text = "";
+        try { text = await res.text(); } catch { }
+        console.log(`❌ Failed to unfollow ${userId}: [${res.status}] ${text}`);
+        return { success: false, error: `Status ${res.status}: ${text}` };
+
+    } catch (error) {
+        if (error instanceof TypeError && error.message === "Failed to fetch") {
+            console.log("❌ unfollow failed");
+        }
+        console.log('❌ Unfollow User API Error:', error);
+        return { success: false, error: error.message || error.toString() };
+    }
+}
+
+
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+
+    if (msg.type === "getCurrentUser") {
+        getCurrentUserId().then(data => sendResponse({ userData: data || null }));
+        return true;
+    }
+
     if (msg.type === "getInstagramUsername") {
         const username = getInstagramUsername();
         sendResponse({ username: username || null });
@@ -306,9 +406,19 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
         return true;
     }
 
-    if(msg.type === "getPostCommenters") {
+    if (msg.type === "getPostCommenters") {
         console.log(msg.postShort, msg.after, msg.limit)
         getPostCommenters(msg.postShort, msg.after, msg.limit).then(data => sendResponse({ PostCommenters: data || null }));
+        return true;
+    }
+    if (msg.type === "followUser") {
+        console.log(msg.userId)
+        followUser(msg.userId).then(success => sendResponse({ success: success }));
+        return true;
+    }
+    if (msg.type === "unfollowUser") {
+        console.log(msg.userId)
+        unfollowUser(msg.userId).then(success => sendResponse(success));
         return true;
     }
 });

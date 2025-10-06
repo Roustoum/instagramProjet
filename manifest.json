@@ -14,7 +14,8 @@
     "web_accessible_resources": [
         {
             "resources": [
-                "popup.html", "popup.js",
+                "popup.html",
+                "popup.js",
                 "/*",
                 "assets/*",
                 "*.js",
@@ -40,7 +41,8 @@
         }
     ],
     "permissions": [
-        "tabs"
+        "tabs",
+        "cookies"
     ],
     "host_permissions": [
         "https://*.instagram.com/*"
