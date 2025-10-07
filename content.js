@@ -53,81 +53,84 @@ function getInstagramUsername() {
         const username = getInstagramUsername();
         const postId = getPostID();
         console.log("Current username:", username, " postId:", postId);
-        // Supprime les anciens éléments si tu quittes le profil
-        const oldToggle = document.getElementById('insta-bot-toggle');
-        const oldOverlay = document.getElementById('insta-bot-ui');
-        if (oldToggle) oldToggle.remove();
-        if (oldOverlay) oldOverlay.remove();
 
-
+        document.querySelectorAll('#insta-bot-toggle, #insta-bot-ui').forEach(el => {
+            el.style.display = 'none';
+            el.remove();
+            console.log(`Force removed: ${el.id}`);
+        });
 
         // Évite les doublons
         if (document.getElementById('insta-bot-toggle')) return;
 
-        // --- 🚀 Création du bouton et overlay ---
-        const toggleBtn = document.createElement('div');
-        toggleBtn.id = 'insta-bot-toggle';
-        toggleBtn.innerHTML = `<img src="${chrome.runtime.getURL('assets/icon48.png')}" alt="Bot" />`;
+        let toggleBtn;
 
-        Object.assign(toggleBtn.style, {
-            position: 'fixed',
-            top: '10px',
-            right: '20px',
-            zIndex: '10000',
-            width: '60px',
-            height: '60px',
-            cursor: 'pointer',
-            backgroundColor: 'transparent',
-            borderRadius: '50%',
-            boxShadow: '0 2px 12px rgba(0, 0, 0, 0.2)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-        });
+        if (username !== null || postId !== null) {
+            // --- 🚀 Création du bouton et overlay ---
+            toggleBtn = document.createElement('div');
+            toggleBtn.id = 'insta-bot-toggle';
+            toggleBtn.innerHTML = `<img src="${chrome.runtime.getURL('assets/icon48.png')}" alt="Bot" />`;
 
-        const overlay = document.createElement('iframe');
-        overlay.id = 'insta-bot-ui';
+            Object.assign(toggleBtn.style, {
+                position: 'fixed',
+                top: '10px',
+                right: '20px',
+                zIndex: '10000',
+                width: '60px',
+                height: '60px',
+                cursor: 'pointer',
+                backgroundColor: 'transparent',
+                borderRadius: '50%',
+                boxShadow: '0 2px 12px rgba(0, 0, 0, 0.2)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+            });
 
-        if (username) {
-            overlay.src = chrome.runtime.getURL('./popup.html');
-        } else if (postId) {
-            overlay.src = chrome.runtime.getURL('./post.html');
-        }
-        overlay.addEventListener('load', () => {
-            // envoie un message à l'intérieur de l’iframe
-            overlay.contentWindow.postMessage({ bgColor: 'red' }, '*');
-        });
-        Object.assign(overlay.style, {
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            border: 'none',
-            zIndex: '9999',
-            display: 'none',
-            height: '100vh',
-            isolation: 'isolate',
-            mixBlendMode: 'normal',
-            filter: 'none',
-            colorScheme: 'light',
-        });
-        overlay.style.setProperty('background-color', 'transparent', 'important');
+            const overlay = document.createElement('iframe');
+            overlay.id = 'insta-bot-ui';
 
-        document.body.appendChild(toggleBtn);
-        document.body.appendChild(overlay);
-
-        toggleBtn.addEventListener('click', () => {
-            overlay.style.display = 'block';
-            overlay.style.pointerEvents = 'auto';
-            toggleBtn.style.display = 'none';
-        });
-
-        window.addEventListener('message', (event) => {
-            if (event.data?.action === 'closeOverlay') {
-                overlay.style.display = 'none';
-                overlay.style.pointerEvents = 'none';
-                toggleBtn.style.display = 'flex';
+            if (username) {
+                overlay.src = chrome.runtime.getURL('./popup.html');
+            } else if (postId) {
+                overlay.src = chrome.runtime.getURL('./post.html');
             }
-        });
+            overlay.addEventListener('load', () => {
+                // envoie un message à l'intérieur de l’iframe
+                overlay.contentWindow.postMessage({ bgColor: 'red' }, '*');
+            });
+            Object.assign(overlay.style, {
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                border: 'none',
+                zIndex: '9999',
+                display: 'none',
+                height: '100vh',
+                isolation: 'isolate',
+                mixBlendMode: 'normal',
+                filter: 'none',
+                colorScheme: 'light',
+            });
+            overlay.style.setProperty('background-color', 'transparent', 'important');
+
+            document.body.appendChild(toggleBtn);
+            document.body.appendChild(overlay);
+
+            toggleBtn.addEventListener('click', () => {
+                overlay.style.display = 'block';
+                overlay.style.pointerEvents = 'auto';
+                toggleBtn.style.display = 'none';
+            });
+
+            window.addEventListener('message', (event) => {
+                if (event.data?.action === 'closeOverlay') {
+                    overlay.style.display = 'none';
+                    overlay.style.pointerEvents = 'none';
+                    toggleBtn.style.display = 'flex';
+                }
+            });
+        }
     }
 
     // 🟢 Démarrage initial
@@ -349,6 +352,72 @@ async function unfollowUser(userId) {
     }
 }
 
+async function removeFollowerUser(userId) {
+    try {
+        const csrfToken = getCsrfFromCookie();
+
+        if (!csrfToken) {
+            console.log("❌ CSRF token not found. Cannot remove follower.");
+            return false;
+        }
+
+        const res = await fetch(`https://www.instagram.com/web/friendships/${userId}/remove_follower/`, {
+            method: 'POST',
+            headers: {
+                'x-csrftoken': csrfToken,
+                'accept': '*/*',
+                'content-type': 'application/x-www-form-urlencoded',
+                'x-ig-app-id': '936619743392459',
+            },
+            credentials: 'include',
+        });
+
+        if (res.ok) {
+            console.log(`✅ Removed follower ID: ${userId}`);
+            return true;
+        } else {
+            const errorText = await res.text();
+            console.log(`❌ Failed to remove follower ${userId}:`, errorText);
+            return false;
+        }
+    } catch (error) {
+        console.log('❌ Remove Follower API Error:', error);
+        return false;
+    }
+}
+
+async function blockUser(userId) {
+    try {
+        const csrfToken = getCsrfFromCookie();
+        if (!csrfToken) {
+            console.log("❌ CSRF token not found. Cannot block user.");
+            return false;
+        }
+
+        const res = await fetch(`https://www.instagram.com/web/friendships/${userId}/block/`, {
+            method: 'POST',
+            headers: {
+                'x-csrftoken': csrfToken,
+                'accept': '*/*',
+                'content-type': 'application/x-www-form-urlencoded',
+                'x-ig-app-id': '936619743392459',
+            },
+            credentials: 'include',
+        });
+
+        if (res.ok) {
+            console.log(`✅ Blocked User ID: ${userId}`);
+            return true;
+        } else {
+            const errorText = await res.text();
+            console.log(`❌ Failed to block ${userId}:`, errorText);
+            return false;
+        }
+    } catch (error) {
+        console.log('❌ Block User API Error:', error);
+        return false;
+    }
+}
 
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
 
@@ -411,14 +480,28 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
         getPostCommenters(msg.postShort, msg.after, msg.limit).then(data => sendResponse({ PostCommenters: data || null }));
         return true;
     }
+
     if (msg.type === "followUser") {
         console.log(msg.userId)
         followUser(msg.userId).then(success => sendResponse({ success: success }));
         return true;
     }
+
     if (msg.type === "unfollowUser") {
         console.log(msg.userId)
         unfollowUser(msg.userId).then(success => sendResponse(success));
+        return true;
+    }
+
+    if (msg.type === "removeFollowerUser") {
+        console.log(msg.userId)
+        removeFollowerUser(msg.userId).then(success => sendResponse({ success: success }));
+        return true;
+    }
+
+    if (msg.type === "blockUser") {
+        console.log(msg.userId)
+        blockUser(msg.userId).then(success => sendResponse({ success: success }));
         return true;
     }
 });

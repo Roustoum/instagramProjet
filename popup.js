@@ -23,7 +23,7 @@ let userId = null;
 //     console.log(data1);
 // }
 
-getUserDetails("60880119431");
+// getUserDetails("60880119431");
 
 function getCurrentUserId() {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -178,6 +178,45 @@ function unfollowUser() {
     }
 }
 
+function removeFollowerUser(){
+    if (userId !== null) {
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            chrome.tabs.sendMessage(
+                tabs[0].id,
+                { type: "removeFollowerUser", userId: userId },
+                (response) => {
+                    if (chrome.runtime.lastError) {
+                        console.error("Erreur:", chrome.runtime.lastError.message);
+                        return;
+                    }
+                    console.log("Remove follower response:", response.success);
+                    document.getElementById("text").innerHTML +=
+                        response.success || "No response";
+                }
+            );
+        });
+    }
+}
+
+function blockUser(){
+    if (userId !== null) {
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            chrome.tabs.sendMessage(
+                tabs[0].id,
+                { type: "blockUser", userId: userId },
+                (response) => {
+                    if (chrome.runtime.lastError) {
+                        console.error("Erreur:", chrome.runtime.lastError.message);
+                        return;
+                    }
+                    console.log("Block user response:", response.success);
+                    document.getElementById("text").innerHTML +=
+                        response.success || "No response";
+                }
+            );
+        });
+    }
+}
 
 document.getElementById('btn-getCurrentUser').addEventListener('click', () => {
     getCurrentUserId();
@@ -211,3 +250,10 @@ document.getElementById('btn-unfollowUser').addEventListener('click', () => {
     unfollowUser();
 });
 
+document.getElementById('btn-removeFollowerUser').addEventListener('click', () => {
+    removeFollowerUser();
+});
+
+document.getElementById('btn-blockUser').addEventListener('click', () => {
+    blockUser();
+});
