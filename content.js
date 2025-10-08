@@ -147,7 +147,17 @@ function shortcodeToInstaID(shortcode) {
     return id.toString();
 }
 
+function getSessionId() {
+    return new Promise(resolve => {
+        chrome.runtime.sendMessage({ type: "getSessionId" }, response => {
+            resolve(response?.sessionid || null);
+        });
+    });
+}
+
 function getCsrfFromCookie() {
+
+    console.log(document.cookie);
     return document.cookie
         .split('; ')
         .find(row => row.startsWith('csrftoken='))
@@ -269,6 +279,8 @@ async function getPostCommenters(postShort, after = null, limit = 50) {
 }
 
 async function followUser(userId) {
+    const sessionId = await getSessionId();
+    console.log("Session ID:", sessionId);
     try {
         const csrfToken = getCsrfFromCookie();
         if (!csrfToken) {

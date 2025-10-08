@@ -24,3 +24,16 @@ chrome.action.onClicked.addListener(async () => {
     const url = chrome.runtime.getURL('dashboard.html');
     await chrome.tabs.create({ url });
 });
+
+
+chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+    if (msg.type === "getSessionId") {
+        chrome.cookies.get(
+            { url: "https://www.instagram.com", name: "sessionid" },
+            cookie => {
+                sendResponse({ sessionid: cookie?.value || null });
+            }
+        );
+        return true; // ⚠️ indispensable pour les réponses asynchrones
+    }
+});
