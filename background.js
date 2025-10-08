@@ -37,3 +37,4 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
         return true; // ⚠️ indispensable pour les réponses asynchrones
     }
 });
+ 
