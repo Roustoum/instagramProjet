@@ -1,4 +1,10 @@
 // dashboard.js
+const newCampaignButtons = document.querySelectorAll('.new-campaign');
+newCampaignButtons.forEach(btn => {
+    btn.onclick = async () => {
+        await chrome.tabs.create({ url: 'https://www.instagram.com/' });
+    };
+});
 
 const buttons = document.querySelectorAll('button[id$="-button"]');
 const sections = document.querySelectorAll('div[id$="-content"]');
@@ -52,11 +58,12 @@ buttons.forEach((button) => {
 });
 
 const logo = document.getElementById('logo');
-logo.onclick = ()=>{
-    if(document.documentElement.classList.contains("dark"))
+logo.onclick = () => {
+    if (document.documentElement.classList.contains("dark"))
         document.documentElement.classList.remove("dark")
-    else{
+    else {
         document.documentElement.classList.add("dark")
     }
-    
+
 }
+

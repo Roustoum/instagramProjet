@@ -10,6 +10,7 @@
 
 <body>
     <div class="flex text-black dark:text-white dark:bg-[#131313] selection:bg-indigo-400/20">
+        <!-- partie menu -->
         <div
             class="w-fit bg-gray-50 dark:bg-[#222222] h-screen space-y-2 xl:space-y-[0.6dvw] border-r dark:border-r-white/20 border-r-black/20 flex flex-col justify-between">
             <div class="space-y-2 xl:space-y-[0.6dvw] p-4 xl:p-[1.2dvw]">
@@ -110,18 +111,88 @@
                 </div>
             </div>
         </div>
+
         <div class="w-full h-screen">
             <div id="dashboard-content" class="w-full h-full">
-                DashBoard Content
+                <div
+                    class="h-16 xl:h-[4.8dvw] dark:bg-[#202020] bg-gray-50/50 border-b dark:border-b-white/20 border-b-black/20 flex justify-between items-center w-full px-4 xl:px-[1.2dvw]">
+                    <p class="capitalize text-2xl xl:text-[1.72dvw]">dashboard</p>
+                    <div>
+                        <button
+                            class="new-campaign h-9 xl:h-[2.55dvw] px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] transition-[scale_colors] duration-75 active:scale-95 bg-indigo-400/20 hover:bg-indigo-400/40 flex items-center gap-2 xl:gap-[0.7dvw] group">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="h-[44.44%] min-h[44.44%] transition-colors duration-75 stroke-indigo-700 dark:stroke-indigo-400 group-hover:stroke-indigo-900 dark:group-hover:stroke-indigo-200">
+                                <path d="m15 17 5-5-5-5" />
+                                <path d="M4 18v-2a4 4 0 0 1 4-4h12" />
+                            </svg>
+                            <p
+                                class="capitalize text-base xl:text-[1.15vw] hidden md:block dark:text-indigo-400 text-indigo-700 group-hover:text-indigo-900 dark:group-hover:text-indigo-200">
+                                New Campaign</p>
+                        </button>
+                    </div>
+                </div>
             </div>
             <div id="audiences-content" class="w-full h-full hidden">
-                Audiences Content
+                <div
+                    class="h-16 xl:h-[4.8dvw] dark:bg-[#202020] bg-gray-50/50 border-b dark:border-b-white/20 border-b-black/20 flex justify-between items-center w-full px-4 xl:px-[1.2dvw]">
+                    <p class="capitalize text-2xl xl:text-[1.72dvw]">audiences</p>
+                    <div>
+                        <button
+                            class="new-campaign h-9 xl:h-[2.55dvw] px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] transition-[scale_colors] duration-75 active:scale-95 bg-indigo-400/20 hover:bg-indigo-400/40 flex items-center gap-2 xl:gap-[0.7dvw] group">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="h-[44.44%] min-h[44.44%] transition-colors duration-75 stroke-indigo-700 dark:stroke-indigo-400 group-hover:stroke-indigo-900 dark:group-hover:stroke-indigo-200">
+                                <path d="m15 17 5-5-5-5" />
+                                <path d="M4 18v-2a4 4 0 0 1 4-4h12" />
+                            </svg>
+                            <p
+                                class="capitalize text-base xl:text-[1.15vw] hidden md:block dark:text-indigo-400 text-indigo-700 group-hover:text-indigo-900 dark:group-hover:text-indigo-200">
+                                New Campaign</p>
+                        </button>
+                    </div>
+                </div>
             </div>
             <div id="settings-content" class="w-full h-full hidden">
-                Settings Content
+                <div
+                    class="h-16 xl:h-[4.8dvw] dark:bg-[#202020] bg-gray-50/50 border-b dark:border-b-white/20 border-b-black/20 flex justify-between items-center w-full px-4 xl:px-[1.2dvw]">
+                    <p class="capitalize text-2xl xl:text-[1.72dvw]">settings</p>
+                    <div>
+                        <button
+                            class="new-campaign h-9 xl:h-[2.55dvw] px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] transition-[scale_colors] duration-75 active:scale-95 bg-indigo-400/20 hover:bg-indigo-400/40 flex items-center gap-2 xl:gap-[0.7dvw] group">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="h-[44.44%] min-h[44.44%] transition-colors duration-75 stroke-indigo-700 dark:stroke-indigo-400 group-hover:stroke-indigo-900 dark:group-hover:stroke-indigo-200">
+                                <path d="m15 17 5-5-5-5" />
+                                <path d="M4 18v-2a4 4 0 0 1 4-4h12" />
+                            </svg>
+                            <p
+                                class="capitalize text-base xl:text-[1.15vw] hidden md:block dark:text-indigo-400 text-indigo-700 group-hover:text-indigo-900 dark:group-hover:text-indigo-200">
+                                New Campaign</p>
+                        </button>
+                    </div>
+                </div>
+                
             </div>
             <div id="logs-content" class="w-full h-full hidden">
-                Logs Content
+                <div
+                    class="h-16 xl:h-[4.8dvw] dark:bg-[#202020] bg-gray-50/50 border-b dark:border-b-white/20 border-b-black/20 flex justify-between items-center w-full px-4 xl:px-[1.2dvw]">
+                    <p class="capitalize text-2xl xl:text-[1.72dvw]">logs</p>
+                    <div>
+                        <button
+                            class="new-campaign h-9 xl:h-[2.55dvw] px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] transition-[scale_colors] duration-75 active:scale-95 bg-indigo-400/20 hover:bg-indigo-400/40 flex items-center gap-2 xl:gap-[0.7dvw] group">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="h-[44.44%] min-h[44.44%] transition-colors duration-75 stroke-indigo-700 dark:stroke-indigo-400 group-hover:stroke-indigo-900 dark:group-hover:stroke-indigo-200">
+                                <path d="m15 17 5-5-5-5" />
+                                <path d="M4 18v-2a4 4 0 0 1 4-4h12" />
+                            </svg>
+                            <p
+                                class="capitalize text-base xl:text-[1.15vw] hidden md:block dark:text-indigo-400 text-indigo-700 group-hover:text-indigo-900 dark:group-hover:text-indigo-200">
+                                New Campaign</p>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
