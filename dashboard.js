@@ -1,36 +1,62 @@
-// Sélection des boutons et sections
+// dashboard.js
+
 const buttons = document.querySelectorAll('button[id$="-button"]');
 const sections = document.querySelectorAll('div[id$="-content"]');
 
-// Fonction pour gérer le toggle
-buttons.forEach((button) => {
-    button.addEventListener('click', () => {
-        // Retirer le style actif de tous les boutons
-        buttons.forEach((btn) => {
-            btn.classList.remove('bg-indigo-400/20', 'hover:bg-indigo-400/40');
-            btn.classList.add('hover:bg-indigo-400/10');
-            btn.querySelector('p').classList.remove('text-indigo-700', 'group-hover:text-indigo-900');
-            btn.querySelector('p').classList.add('text-black', 'group-hover:text-indigo-500');
-            btn.querySelector('svg').classList.remove('stroke-indigo-700', 'group-hover:stroke-indigo-900');
-            btn.querySelector('svg').classList.add('stroke-black', 'group-hover:stroke-indigo-500');
-        });
+// fonction pour activer un bouton et afficher la section
+function activateSection(button) {
+    // reset tous les boutons
+    buttons.forEach((btn) => {
+        btn.classList.remove('bg-indigo-400/20', 'hover:bg-indigo-400/40');
+        btn.classList.add('hover:bg-indigo-400/10');
 
-        // Cacher toutes les sections
-        sections.forEach((section) => section.classList.add('hidden'));
+        const svg = btn.querySelector('svg');
+        const p = btn.querySelector('p');
 
-        // Activer le bouton et la section cliquée
-        const sectionId = button.id.replace('-button', '-content');
-        document.getElementById(sectionId).classList.remove('hidden');
+        svg.classList.remove('stroke-indigo-700', 'dark:stroke-indigo-400', 'group-hover:stroke-indigo-900', 'dark:group-hover:stroke-indigo-200');
+        svg.classList.add('stroke-black', 'dark:stroke-white', 'group-hover:stroke-indigo-500', 'dark:group-hover:stroke-indigo-300');
 
-        // Toggle des classes Tailwind pour l’effet actif
-        button.classList.toggle('bg-indigo-400/20');
-        button.classList.toggle('hover:bg-indigo-400/40');
-        button.classList.toggle('hover:bg-indigo-400/10');
-        const p = button.querySelector('p');
-        const svg = button.querySelector('svg');
-        p.classList.toggle('text-indigo-700');
-        p.classList.toggle('text-black');
-        svg.classList.toggle('stroke-indigo-700');
-        svg.classList.toggle('stroke-black');
+        p.classList.remove('text-indigo-700', 'dark:text-indigo-400', 'group-hover:text-indigo-900', 'dark:group-hover:text-indigo-200');
+        p.classList.add('text-black', 'dark:text-white', 'group-hover:text-indigo-500', 'dark:group-hover:text-indigo-300');
     });
+
+    // cacher toutes les sections
+    sections.forEach(section => section.classList.add('hidden'));
+
+    // afficher la section correspondante
+    const sectionId = button.id.replace('-button', '-content');
+    document.getElementById(sectionId).classList.remove('hidden');
+
+    // activer le style du bouton cliqué
+    button.classList.toggle('bg-indigo-400/20');
+    button.classList.toggle('hover:bg-indigo-400/40');
+    button.classList.toggle('hover:bg-indigo-400/10');
+
+    const svg = button.querySelector('svg');
+    const p = button.querySelector('p');
+
+    svg.classList.toggle('stroke-indigo-700');
+    svg.classList.toggle('dark:stroke-indigo-400');
+    svg.classList.toggle('stroke-black');
+    svg.classList.toggle('dark:stroke-white');
+
+    p.classList.toggle('text-indigo-700');
+    p.classList.toggle('dark:text-indigo-400');
+    p.classList.toggle('text-black');
+    p.classList.toggle('dark:text-white');
+}
+
+// gestion du clic
+buttons.forEach((button) => {
+    button.addEventListener('click', () => activateSection(button));
 });
+
+const logo = document.getElementById('logo');
+logo.onclick = ()=>{
+    if(document.documentElement.classList.contains("dark"))
+        document.documentElement.classList.remove("dark")
+    else{
+        document.documentElement.classList.add("dark")
+    }
+    
+}

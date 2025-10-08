@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="">
+<html lang="en" class="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -9,24 +9,25 @@
 </head>
 
 <body>
-    <div class="flex dark:bg-[#131313] selection:bg-indigo-400/20">
+    <div class="flex text-black dark:text-white dark:bg-[#131313] selection:bg-indigo-400/20">
         <div
-            class="w-fit bg-gray-50 dark:bg-[#222222] h-screen space-y-2 xl:space-y-[0.6dvw] border-r border-r-black/20 flex flex-col justify-between">
+            class="w-fit bg-gray-50 dark:bg-[#222222] h-screen space-y-2 xl:space-y-[0.6dvw] border-r dark:border-r-white/20 border-r-black/20 flex flex-col justify-between">
             <div class="space-y-2 xl:space-y-[0.6dvw] p-4 xl:p-[1.2dvw]">
-                <button
+                <button id="logo"
                     class="flex justify-center md:justify-start items-center md:gap-2 xl:gap-[0.7dvw] h-9 xl:h-[2.55dvw] md:px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] w-full focus-visible:outline-0 mb-10 xl:mb-[3dvw]">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="h-[60%] min-h-[60%] transition-colors duration-75 stroke-black mx-auto">
+                        class="h-[60%] min-h-[60%] transition-colors duration-75 stroke-black dark:stroke-white mx-auto">
                         <path
                             d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2" />
                         <path d="M6.453 15h11.094" />
                         <path d="M8.5 2h7" />
                     </svg>
                     <div class="flex flex-col items-start">
-                        <p class="capitalize font-black text-xs xl:text-[0.86dvw] hidden md:block text-black">
+                        <p class="capitalize font-black text-xs xl:text-[0.86dvw] hidden md:block">
                             InstaPilot</p>
-                        <p class="capitalize text-xs xl:text-[0.86dvw] hidden md:block text-gray-700">
+                        <p
+                            class="capitalize text-xs xl:text-[0.86dvw] hidden md:block text-gray-700 dark:text-gray-200">
                             Automation Suite</p>
                     </div>
                 </button>
@@ -35,14 +36,14 @@
                     class="flex justify-start items-center gap-2 xl:gap-[0.7dvw] md:pr-10 xl:pr-[3dvw] h-9 xl:h-[2.55dvw] px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] w-full focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] transition-[scale_colors] duration-75 active:scale-95 group bg-indigo-400/20 hover:bg-indigo-400/40">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="h-[44.44%] min-h[44.44%] transition-colors duration-75 stroke-indigo-700 group-hover:stroke-indigo-900">
+                        class="h-[44.44%] min-h[44.44%] transition-colors duration-75 stroke-indigo-700 dark:stroke-indigo-400 group-hover:stroke-indigo-900 dark:group-hover:stroke-indigo-200">
                         <rect width="7" height="9" x="3" y="3" rx="1" />
                         <rect width="7" height="5" x="14" y="3" rx="1" />
                         <rect width="7" height="9" x="14" y="12" rx="1" />
                         <rect width="7" height="5" x="3" y="16" rx="1" />
                     </svg>
                     <p
-                        class="capitalize text-base xl:text-[1.15vw] hidden md:block text-indigo-700 group-hover:text-indigo-900">
+                        class="capitalize text-base xl:text-[1.15vw] hidden md:block dark:text-indigo-400 text-indigo-700 group-hover:text-indigo-900 dark:group-hover:text-indigo-200">
                         dashboard</p>
                 </button>
 
@@ -50,13 +51,13 @@
                     class="flex justify-start items-center gap-2 xl:gap-[0.7dvw] md:pr-10 xl:pr-[3dvw] h-9 xl:h-[2.55dvw] px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] w-full focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] transition-[scale_colors] duration-75 active:scale-95 group hover:bg-indigo-400/10">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="h-[44.44%] min-h[44.44%] transition-colors duration-75 stroke-black group-hover:stroke-indigo-500">
+                        class="h-[44.44%] min-h[44.44%] transition-colors duration-75 dark:stroke-white stroke-black group-hover:stroke-indigo-500 dark:group-hover:stroke-indigo-300">
                         <path d="M18 21a8 8 0 0 0-16 0" />
                         <circle cx="10" cy="8" r="5" />
                         <path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3" />
                     </svg>
                     <p
-                        class="capitalize text-base xl:text-[1.15vw] hidden md:block text-black group-hover:text-indigo-500">
+                        class="capitalize text-base xl:text-[1.15vw] hidden md:block text-black dark:text-white group-hover:text-indigo-500 dark:group-hover:text-indigo-300">
                         audiences</p>
                 </button>
 
@@ -64,13 +65,13 @@
                     class="flex justify-start items-center gap-2 xl:gap-[0.7dvw] md:pr-10 xl:pr-[3dvw] h-9 xl:h-[2.55dvw] px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] w-full focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] transition-[scale_colors] duration-75 active:scale-95 group hover:bg-indigo-400/10">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="h-[44.44%] min-h[44.44%] transition-colors duration-75 stroke-black group-hover:stroke-indigo-500">
+                        class="h-[44.44%] min-h[44.44%] transition-colors duration-75 dark:stroke-white stroke-black group-hover:stroke-indigo-500 dark:group-hover:stroke-indigo-300">
                         <path
                             d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915" />
                         <circle cx="12" cy="12" r="3" />
                     </svg>
                     <p
-                        class="capitalize text-base xl:text-[1.15vw] hidden md:block text-black group-hover:text-indigo-500">
+                        class="capitalize text-base xl:text-[1.15vw] hidden md:block text-black dark:text-white group-hover:text-indigo-500 dark:group-hover:text-indigo-300">
                         settings</p>
                 </button>
 
@@ -78,7 +79,7 @@
                     class="flex justify-start items-center gap-2 xl:gap-[0.7dvw] md:pr-10 xl:pr-[3dvw] h-9 xl:h-[2.55dvw] px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] w-full focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] transition-[scale_colors] duration-75 active:scale-95 group hover:bg-indigo-400/10">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="h-[44.44%] min-h[44.44%] transition-colors duration-75 stroke-black group-hover:stroke-indigo-500">
+                        class="h-[44.44%] min-h[44.44%] transition-colors duration-75 dark:stroke-white stroke-black group-hover:stroke-indigo-500 dark:group-hover:stroke-indigo-300">
                         <path d="M3 5h1" />
                         <path d="M3 12h1" />
                         <path d="M3 19h1" />
@@ -90,7 +91,7 @@
                         <path d="M13 19h8" />
                     </svg>
                     <p
-                        class="capitalize text-base xl:text-[1.15vw] hidden md:block text-black group-hover:text-indigo-500">
+                        class="capitalize text-base xl:text-[1.15vw] hidden md:block text-black dark:text-white group-hover:text-indigo-500 dark:group-hover:text-indigo-300">
                         logs</p>
                 </button>
             </div>
@@ -124,7 +125,7 @@
             </div>
         </div>
     </div>
-    
+
     <script src="dashboard.js">
     </script>
 </body>
