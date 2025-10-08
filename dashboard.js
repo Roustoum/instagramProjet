@@ -6,6 +6,7 @@ newCampaignButtons.forEach(btn => {
     };
 });
 
+//----------------------------------------------------------------------------------------------------------------
 const buttons = document.querySelectorAll('button[id$="-button"]');
 const sections = document.querySelectorAll('div[id$="-content"]');
 
@@ -51,12 +52,38 @@ function activateSection(button) {
     p.classList.toggle('text-black');
     p.classList.toggle('dark:text-white');
 }
-
 // gestion du clic
 buttons.forEach((button) => {
     button.addEventListener('click', () => activateSection(button));
 });
 
+//----------------------------------------------------------------------------------------------------------------
+// Sélectionne les trois boutons
+const dayButtons = document.querySelectorAll('#to-day, #\\37-day, #\\33 0-day');
+
+dayButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        // 🔹 Réinitialiser tous les boutons
+        dayButtons.forEach((btn) => {
+            btn.classList.remove('bg-indigo-400', 'hover:bg-indigo-500');
+            btn.classList.add('bg-indigo-400/20', 'hover:bg-indigo-400/40');
+
+            const p = btn.querySelector('p');
+            p.classList.remove('text-white', 'group-hover:text-gray-100');
+            p.classList.add('text-indigo-700', 'dark:text-indigo-400', 'group-hover:text-indigo-900', 'dark:group-hover:text-indigo-200');
+        });
+
+        // 🔹 Activer le bouton cliqué
+        button.classList.remove('bg-indigo-400/20', 'hover:bg-indigo-400/40');
+        button.classList.add('bg-indigo-400', 'hover:bg-indigo-500');
+
+        const p = button.querySelector('p');
+        p.classList.remove('text-indigo-700', 'dark:text-indigo-400', 'group-hover:text-indigo-900', 'dark:group-hover:text-indigo-200');
+        p.classList.add('text-white', 'group-hover:text-gray-100');
+    });
+});
+
+//----------------------------------------------------------------------------------------------------------------
 const logo = document.getElementById('logo');
 logo.onclick = () => {
     if (document.documentElement.classList.contains("dark"))
