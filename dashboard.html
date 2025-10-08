@@ -10,8 +10,9 @@
 
 <body>
     <div class="flex dark:bg-[#131313] selection:bg-indigo-400/20">
-        <div class="w-fit bg-gray-50 dark:bg-[#222222] h-screen space-y-2 xl:space-y-[0.6dvw] p-4 xl:p-[1.2dvw] border-r border-r-black/20">
-            <div class="space-y-2 xl:space-y-[0.6dvw]">
+        <div
+            class="w-fit bg-gray-50 dark:bg-[#222222] h-screen space-y-2 xl:space-y-[0.6dvw] border-r border-r-black/20 flex flex-col justify-between">
+            <div class="space-y-2 xl:space-y-[0.6dvw] p-4 xl:p-[1.2dvw]">
                 <button
                     class="flex justify-center md:justify-start items-center md:gap-2 xl:gap-[0.7dvw] h-9 xl:h-[2.55dvw] md:px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] w-full focus-visible:outline-0 mb-10 xl:mb-[3dvw]">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -30,7 +31,7 @@
                     </div>
                 </button>
 
-                <button
+                <button id="dashboard-button"
                     class="flex justify-start items-center gap-2 xl:gap-[0.7dvw] md:pr-10 xl:pr-[3dvw] h-9 xl:h-[2.55dvw] px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] w-full focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] transition-[scale_colors] duration-75 active:scale-95 group bg-indigo-400/20 hover:bg-indigo-400/40">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -45,7 +46,7 @@
                         dashboard</p>
                 </button>
 
-                <button
+                <button id="audiences-button"
                     class="flex justify-start items-center gap-2 xl:gap-[0.7dvw] md:pr-10 xl:pr-[3dvw] h-9 xl:h-[2.55dvw] px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] w-full focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] transition-[scale_colors] duration-75 active:scale-95 group hover:bg-indigo-400/10">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -59,7 +60,7 @@
                         audiences</p>
                 </button>
 
-                <button
+                <button id="settings-button"
                     class="flex justify-start items-center gap-2 xl:gap-[0.7dvw] md:pr-10 xl:pr-[3dvw] h-9 xl:h-[2.55dvw] px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] w-full focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] transition-[scale_colors] duration-75 active:scale-95 group hover:bg-indigo-400/10">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -73,7 +74,7 @@
                         settings</p>
                 </button>
 
-                <button
+                <button id="logs-button"
                     class="flex justify-start items-center gap-2 xl:gap-[0.7dvw] md:pr-10 xl:pr-[3dvw] h-9 xl:h-[2.55dvw] px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] w-full focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] transition-[scale_colors] duration-75 active:scale-95 group hover:bg-indigo-400/10">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -93,8 +94,37 @@
                         logs</p>
                 </button>
             </div>
+
+            <!-- partie user -->
+            <div class="flex items-center justify-center md:justify-start h-14 xl:h-[4.2dvw] gap-2 xl:gap-[0.6dvw]">
+                <div class="h-4/5 flex-center aspect-square">
+                    <div
+                        class="size-[80%] rounded-full bg-indigo-700/30 flex-center text-xl xl:text-[1.43dvw] text-indigo-700">
+                        U
+                    </div>
+                </div>
+                <div class="md:flex flex-col hidden">
+                    <p class="text-[0.75rem] xl:text-[0.86dvw]">User</p>
+                    <p class="text-[0.75rem] xl:text-[0.86dvw] font-light">Pro Plan</p>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-screen">
+            <div id="dashboard-content" class="w-full h-full">
+                DashBoard Content
+            </div>
+            <div id="audiences-content" class="w-full h-full hidden">
+                Audiences Content
+            </div>
+            <div id="settings-content" class="w-full h-full hidden">
+                Settings Content
+            </div>
+            <div id="logs-content" class="w-full h-full hidden">
+                Logs Content
+            </div>
         </div>
     </div>
+    
     <script src="dashboard.js">
     </script>
 </body>
