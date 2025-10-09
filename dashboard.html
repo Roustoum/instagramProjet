@@ -332,7 +332,362 @@
                 </div>
 
                 <div class="h-[calc(100dvh-4.5rem)] xl:h-[calc(100dvh-5dvw)] p-4 xl:p-[1.2dvw]">
+                    <div class="grid lg:grid-cols-3 gap-4 xl:gap-[1.2dvw]">
+                        <div
+                            class="dark:bg-[#232323] bg-white border-1 dark:border-white/10 shadow-md border-[#ebebeb] p-4 xl:p-[1.2vw] rounded-lg xl:rounded-[0.6dvw] space-y-2 xl:space-y-[0.6dvw]">
+                            <p class="capitalize text-sm xl:text-[1dvw] text-gray-700 dark:text-gray-300">audiences list
+                            </p>
+                            <div class="flex w-full gap-2 xl:gap-[0.6dvw]">
+                                <button
+                                    class="h-9 xl:h-[2.55dvw] px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] dark:outline-white/50 outline-black/50 transition-[scale_colors] duration-75 active:scale-95 bg-indigo-400/20 hover:bg-indigo-400/40 flex items-center gap-2 xl:gap-[0.7dvw] group">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="h-[44.44%] min-h[44.44%] transition-colors duration-75 stroke-indigo-700 dark:stroke-indigo-400 group-hover:stroke-indigo-900 dark:group-hover:stroke-indigo-200">
+                                        <path d="M5 12h14" />
+                                        <path d="M12 5v14" />
+                                    </svg>
+                                    <p
+                                        class="capitalize text-base xl:text-[1.15vw] dark:text-indigo-400 text-indigo-700 group-hover:text-indigo-900 dark:group-hover:text-indigo-200">
+                                        Add</p>
+                                </button>
+                                
+                                <div class="relative flex grow">
+                                    <input type="text" placeholder="search"
+                                        class="rounded-lg xl:rounded-[0.6dvw] !relative p-2 xl:p-[0.6vw] pl-9 xl:pl-[2.7vw] text-xs xl:text-[0.8625vw] focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] dark:text-[#b4b4b4] text-black dark:outline-white/50 outline-black/50 dark:placeholder-[#b4b4b4] placeholder-black border-2 xl:border-[0.15vw] dark:border-white/20 border-[#e0e0e0] w-full" />
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        class="size-5 xl:size-[1.5vw] absolute top-1/2 left-2 xl:left-[0.6vw] -translate-y-1/2 stroke-black dark:stroke-[#b4b4b4] transition-colors">
+                                        <path d="m21 21-4.34-4.34" />
+                                        <circle cx="11" cy="11" r="8" />
+                                    </svg>
+                                </div>
+                            </div>
 
+                            <div class="space-y-4 xl:space-y-[1.2dvw]" id="audiences-list">
+
+                                <div
+                                    class="flex gap-4 xl:gap-[1.2dvw] items-center bg-indigo-400/10 dark:bg-indigo-800/10 p-2 xl:p-[0.6dvw] rounded-lg xl:rounded-[0.6dvw]">
+                                    <div
+                                        class="w-9 aspect-square bg-indigo-800 rounded-lg xl:rounded-[0.6dvw] flex-center text-base xl:text-[1.15dvw] font-extrabold text-white">
+                                        T
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <p
+                                            class="capitalize text-xs xl:text-[0.86dvw] font-bold text-black dark:text-gray-200">
+                                            test
+                                        </p>
+                                        <p
+                                            class="capitalize text-xs xl:text-[0.86dvw] text-gray-700 dark:text-gray-300">
+                                            97 profiles
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div
+                            class="dark:bg-[#232323] bg-white lg:col-span-2 border-1 dark:border-white/10 shadow-md border-[#ebebeb] p-4 xl:p-[1.2vw] rounded-lg xl:rounded-[0.6dvw] space-y-4 xl:space-y-[1.2dvw] ">
+                            <div class="flex justify-between">
+                                <div>
+                                    <p id="audiences-selected"
+                                        class="capitalize text-sm xl:text-[1dvw] text-gray-700 dark:text-gray-300">Test
+                                    </p>
+                                    <p class="capitalize text-xs xl:text-[0.86dvw] text-gray-800 dark:text-gray-400">
+                                        97 profils
+                                    </p>
+                                </div>
+
+                                <div class="flex gap-2 xl:gap-[0.6dvw]">
+                                    <button
+                                        class="h-9 xl:h-[2.55dvw] px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] dark:outline-white/50 outline-black/50 transition-[scale_colors] duration-75 active:scale-95 bg-indigo-400/20 hover:bg-indigo-400/40 flex items-center gap-2 xl:gap-[0.7dvw] group">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            class="h-[44.44%] min-h[44.44%] transition-colors duration-75 stroke-indigo-700 dark:stroke-indigo-400 group-hover:stroke-indigo-900 dark:group-hover:stroke-indigo-200">
+                                            <path d="M12 3v12" />
+                                            <path d="m17 8-5-5-5 5" />
+                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                        </svg>
+                                        <p
+                                            class="capitalize text-base xl:text-[1.15vw] dark:text-indigo-400 text-indigo-700 group-hover:text-indigo-900 dark:group-hover:text-indigo-200">
+                                            export</p>
+                                    </button>
+
+                                    <button
+                                        class="h-9 xl:h-[2.55dvw] px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] dark:outline-white/50 outline-black/50 transition-[scale_colors] duration-75 active:scale-95 bg-indigo-400/20 hover:bg-indigo-400/40 flex items-center gap-2 xl:gap-[0.7dvw] group">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            class="h-[44.44%] min-h[44.44%] transition-colors duration-75 stroke-indigo-700 dark:stroke-indigo-400 group-hover:stroke-indigo-900 dark:group-hover:stroke-indigo-200">
+                                            <path d="M12 15V3" />
+                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                            <path d="m7 10 5 5 5-5" />
+                                        </svg>
+                                        <p
+                                            class="capitalize text-base xl:text-[1.15vw] dark:text-indigo-400 text-indigo-700 group-hover:text-indigo-900 dark:group-hover:text-indigo-200">
+                                            import</p>
+                                    </button>
+
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap gap-2 xl:gap-[0.6dvw]">
+                                <button id="select-toggle"
+                                    class="h-9 xl:h-[2.55dvw] px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] dark:outline-white/50 outline-black/50 transition-[scale_colors] duration-75 active:scale-95 bg-indigo-400/20 hover:bg-indigo-400/40 flex items-center gap-2 xl:gap-[0.7dvw] group"
+                                    aria-pressed="false" data-state="select">
+
+                                    <!-- Icône SELECT (check in square) -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="icon-select h-[44.44%] min-h[44.44%] transition-colors duration-75
+                stroke-indigo-700 dark:stroke-indigo-400
+                group-hover:stroke-indigo-900 dark:group-hover:stroke-indigo-200">
+                                        <path d="m12 15 2 2 4-4" />
+                                        <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                                        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                                    </svg>
+
+                                    <!-- Icône UNCHECK (celle que tu as donnée) -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="icon-uncheck hidden h-[44.44%] min-h[44.44%] transition-colors duration-75
+                stroke-indigo-700 dark:stroke-indigo-400
+                group-hover:stroke-indigo-900 dark:group-hover:stroke-indigo-200">
+                                        <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                                        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                                    </svg>
+
+                                    <p class="label capitalize text-base xl:text-[1.15vw]
+            dark:text-indigo-400 text-indigo-700
+            group-hover:text-indigo-900 dark:group-hover:text-indigo-200">
+                                        select all
+                                    </p>
+                                </button>
+
+
+                                <div class="relative flex grow">
+                                    <input type="text" placeholder="search"
+                                        class="rounded-lg xl:rounded-[0.6dvw] !relative p-2 xl:p-[0.6vw] pl-9 xl:pl-[2.7vw] text-xs xl:text-[0.8625vw] focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] dark:text-[#b4b4b4] text-black dark:outline-white/50 outline-black/50 dark:placeholder-[#b4b4b4] placeholder-black border-2 xl:border-[0.15vw] dark:border-white/20 border-[#e0e0e0] w-full" />
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        class="size-5 xl:size-[1.5vw] absolute top-1/2 left-2 xl:left-[0.6vw] -translate-y-1/2 stroke-black dark:stroke-[#b4b4b4] transition-colors">
+                                        <path d="m21 21-4.34-4.34" />
+                                        <circle cx="11" cy="11" r="8" />
+                                    </svg>
+                                </div>
+
+                                <!-- Action select (Follow | Unfollow | Remove follower | Block) -->
+
+                                <div id="action-dropdown" class="relative inline-block text-left">
+                                    <!-- Trigger -->
+                                    <button id="action-trigger" class="flex items-center gap-2 xl:gap-[0.6dvw]
+             h-9 xl:h-[2.55dvw] px-3 xl:px-[0.9dvw]
+             rounded-lg xl:rounded-[0.6dvw]
+             bg-gray-200/60 dark:bg-zinc-800
+             text-sm xl:text-[0.95dvw]
+             text-gray-900 dark:text-gray-100
+             focus:outline-none ring-1 ring-black/10 dark:ring-white/10
+             hover:bg-gray-200 dark:hover:bg-zinc-700 transition-colors">
+                                        <!-- current icon -->
+                                        <span id="action-icon" class="size-4 xl:size-[1.2dvw]">
+                                            <!-- default = Follow -->
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" class="size-full">
+                                                <path d="M2 21a8 8 0 0 1 13.292-6" />
+                                                <circle cx="10" cy="8" r="5" />
+                                                <path d="M19 16v6" />
+                                                <path d="M22 19h-6" />
+                                            </svg>
+                                        </span>
+                                        <span id="action-label" class="capitalize">follow</span>
+                                        <svg class="size-4 xl:size-[1.2dvw] opacity-70"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="m6 9 6 6 6-6" />
+                                        </svg>
+                                    </button>
+
+                                    <!-- Menu -->
+                                    <div id="action-menu"
+                                        class="hidden absolute right-0 mt-2 xl:mt-[0.6dvw] w-56 xl:w-[16dvw]
+                rounded-lg xl:rounded-[0.6dvw] bg-white dark:bg-[#232323] shadow-lg ring-1 ring-black/10 dark:ring-white/10 overflow-hidden z-20">
+                                        <!-- Follow -->
+                                        <button data-action="follow"
+                                            class="action-option w-full text-left
+               flex items-center gap-2 xl:gap-[0.6dvw] px-3 xl:px-[0.9dvw] h-9 xl:h-[2.55dvw] text-sm xl:text-[0.95dvw] text-gray-800 dark:text-gray-200 hover:bg-indigo-500/10 dark:hover:bg-indigo-500/15 transition-colors">
+                                            <span class="size-4 xl:size-[1.2dvw]">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="size-full">
+                                                    <path d="M2 21a8 8 0 0 1 13.292-6" />
+                                                    <circle cx="10" cy="8" r="5" />
+                                                    <path d="M19 16v6" />
+                                                    <path d="M22 19h-6" />
+                                                </svg>
+                                            </span>
+                                            <span>Follow</span>
+                                        </button>
+
+                                        <!-- Unfollow -->
+
+                                        <button data-action="unfollow"
+                                            class="action-option w-full text-left flex items-center gap-2 xl:gap-[0.6dvw] px-3 xl:px-[0.9dvw] h-9 xl:h-[2.55dvw] text-sm xl:text-[0.95dvw] text-gray-800 dark:text-gray-200 hover:bg-indigo-500/10 dark:hover:bg-indigo-500/15 transition-colors">
+                                            <span class="size-4 xl:size-[1.2dvw]">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="size-full">
+                                                    <path d="M2 21a8 8 0 0 1 13.292-6" />
+                                                    <circle cx="10" cy="8" r="5" />
+                                                    <path d="M22 19H16" /> <!-- minus -->
+                                                </svg>
+                                            </span>
+                                            <span>Unfollow</span>
+                                        </button>
+
+                                        <!-- Remove follower (user with X badge) -->
+                                        <button data-action="remove-follower"
+                                            class="action-option w-full text-left
+               flex items-center gap-2 xl:gap-[0.6dvw] px-3 xl:px-[0.9dvw] h-9 xl:h-[2.55dvw] text-sm xl:text-[0.95dvw] text-gray-800 dark:text-gray-200 hover:bg-indigo-500/10 dark:hover:bg-indigo-500/15 transition-colors">
+                                            <span class="size-4 xl:size-[1.2dvw]">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="size-full">
+                                                    <!-- user -->
+                                                    <path d="M2 21a8 8 0 0 1 13.292-6" />
+                                                    <circle cx="10" cy="8" r="5" />
+                                                    <!-- X badge (top-right) -->
+                                                    <circle cx="19" cy="19" r="4" fill="none" />
+                                                    <path d="m17.5 17.5 3 3" />
+                                                    <path d="m20.5 17.5-3 3" />
+                                                </svg>
+                                            </span>
+                                            <span>Remove follower</span>
+                                        </button>
+
+                                        <!-- Block (crossed lines) -->
+                                        <button data-action="block"
+                                            class="action-option w-full text-left
+               flex items-center gap-2 xl:gap-[0.6dvw] px-3 xl:px-[0.9dvw] h-9 xl:h-[2.55dvw] text-sm xl:text-[0.95dvw] text-gray-800 dark:text-gray-200 hover:bg-indigo-500/10 dark:hover:bg-indigo-500/15 transition-colors">
+                                            <span class="size-4 xl:size-[1.2dvw]">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="size-full">
+                                                    <path d="M2 21a8 8 0 0 1 11.873-7" />
+                                                    <circle cx="10" cy="8" r="5" />
+                                                    <path d="m17 17 5 5" />
+                                                    <path d="m22 17-5 5" />
+                                                </svg>
+                                            </span>
+                                            <span>Block</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <button
+                                    class="h-9 xl:h-[2.55dvw] px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] dark:outline-white/50 outline-black/50 transition-[scale_colors] duration-75 active:scale-95 bg-indigo-400/20 hover:bg-indigo-400/40 flex items-center gap-2 xl:gap-[0.7dvw] group">
+                                    <p
+                                        class="capitalize text-base xl:text-[1.15vw] dark:text-indigo-400 text-indigo-700 group-hover:text-indigo-900 dark:group-hover:text-indigo-200">
+                                        OK</p>
+                                </button>
+                            </div>
+
+                            <!-- Wrapper -->
+                            <div
+                                class="rounded-lg xl:rounded-[0.6dvw] overflow-hidden ring-1 ring-black/10 dark:ring-white/10 bg-white dark:bg-[#232323]">
+
+                                <!-- Header -->
+                                <div class="grid grid-cols-[auto_1.4fr_1fr_1fr_1fr_1fr]
+                items-center gap-2 xl:gap-[0.6dvw]
+                px-3 xl:px-[0.9dvw] h-10 xl:h-[3dvw]
+                text-xs xl:text-[0.86dvw]
+                font-medium
+                bg-gray-50 dark:bg-zinc-800
+                text-gray-700 dark:text-gray-300">
+                                    <div class="flex items-center gap-2 xl:gap-[0.6dvw]">
+                                        <label class="relative inline-flex items-center cursor-pointer select-none">
+                                            <input type="checkbox" class="peer sr-only" aria-label="Select row">
+
+                                            <span class="w-4 xl:w-[1.2dvw] h-4 xl:h-[1.2dvw]
+                                                     rounded-[0.25rem] xl:rounded-[0.3dvw]
+                                                     ring-1 ring-black/20 dark:ring-white/20
+                                                     bg-white dark:bg-[#2b2b2b]
+                                                     flex items-center justify-center
+                                                     transition-colors
+                                                     peer-focus:outline-none peer-focus:ring-2 xl:peer-focus:ring-[0.12dvw] peer-focus:ring-indigo-400/60
+                                          
+                                                     /* check visible quand coché */
+                                                     [&>svg]:opacity-0 peer-checked:[&>svg]:opacity-100
+                                          
+                                                     /* 💡 border (ring) prend la couleur du check */
+                                                     peer-checked:ring-indigo-600 dark:peer-checked:ring-indigo-400
+                                                     ">
+
+                                                <svg class="size-3 xl:size-[0.9dvw]
+                                                         text-indigo-600 dark:text-indigo-400
+                                                         transition-opacity" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                                    stroke-linejoin="round">
+                                                    <path d="M20 6 9 17l-5-5" />
+                                                </svg>
+                                            </span>
+                                        </label>
+                                    </div>
+                                    <div class="truncate">Nom</div>
+                                    <div class="truncate">Titre de poste</div>
+                                    <div class="truncate">Entreprise</div>
+                                    <div class="truncate">Activité</div>
+                                    <div class="truncate">Tags</div>
+                                </div>
+
+                                <!-- Row component -->
+                                <div class="divide-y divide-black/10 dark:divide-white/10">
+                                    <!-- Row 1 -->
+                                    <div class="grid grid-cols-[auto_1.4fr_1fr_1fr_1fr_1fr] items-center gap-2 xl:gap-[0.6dvw] px-3 xl:px-[0.9dvw] h-12 xl:h-[3.3dvw] text-sm xl:text-[0.95dvw] text-gray-900 dark:text-gray-100">
+                                        <div class="flex items-center gap-2 xl:gap-[0.6dvw]">
+                                            <!-- checkbox -->
+                                            <label class="relative inline-flex items-center cursor-pointer select-none">
+                                                <input type="checkbox" class="peer sr-only" aria-label="Select row">
+
+                                                <span class="w-4 xl:w-[1.2dvw] h-4 xl:h-[1.2dvw]
+                                                         rounded-[0.25rem] xl:rounded-[0.3dvw]
+                                                         ring-1 ring-black/20 dark:ring-white/20
+                                                         bg-white dark:bg-[#2b2b2b]
+                                                         flex items-center justify-center
+                                                         transition-colors
+                                                         peer-focus:outline-none peer-focus:ring-2 xl:peer-focus:ring-[0.12dvw] peer-focus:ring-indigo-400/60
+                                              
+                                                         /* check visible quand coché */
+                                                         [&>svg]:opacity-0 peer-checked:[&>svg]:opacity-100
+                                              
+                                                         /* 💡 border (ring) prend la couleur du check */
+                                                         peer-checked:ring-indigo-600 dark:peer-checked:ring-indigo-400
+                                                         ">
+
+                                                    <svg class="size-3 xl:size-[0.9dvw]
+                                                             text-indigo-600 dark:text-indigo-400
+                                                             transition-opacity" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <path d="M20 6 9 17l-5-5" />
+                                                    </svg>
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="truncate">@thetxczw</div>
+                                        <div class="text-gray-500 dark:text-gray-400 truncate">—</div>
+                                        <div class="text-gray-500 dark:text-gray-400 truncate">—</div>
+                                        <div class="text-gray-500 dark:text-gray-400 truncate">—</div>
+                                        <div class="text-gray-500 dark:text-gray-400 truncate">Aucun tag</div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -710,7 +1065,7 @@
                                     </div>
                                 </div>
 
-                                <button id="save-global-settings"
+                                <button id="save-waits-settings"
                                     class="h-9 xl:h-[2.55dvw] px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] dark:outline-white/50 outline-black/50 transition-[scale_colors] duration-75 active:scale-95 bg-indigo-400/20 hover:bg-indigo-400/40 flex items-center gap-2 xl:gap-[0.7dvw] group">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                         stroke="currentColor" stroke-width="2" stroke-linecap="round"
