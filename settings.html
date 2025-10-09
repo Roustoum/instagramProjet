@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link href="./output.css" rel="stylesheet">
+</head>
+
+<body class="h-full">
+    <div class="flex items-stretch text-black dark:text-white dark:bg-[#131313] selection:bg-indigo-400/20">
+        <!-- partie menu -->
+        <div
+            class="w-fit bg-gray-50 dark:bg-[#222222] h-screen space-y-2 xl:space-y-[0.6dvw] border-r dark:border-r-white/20 border-r-black/20 flex flex-col justify-between">
+            <div class="space-y-2 xl:space-y-[0.6dvw] p-4 xl:p-[1.2dvw]">
+                <div id="logo"
+                    class="flex justify-center md:justify-start items-center md:gap-2 xl:gap-[0.7dvw] h-10 xl:h-[3dvw] rounded-lg xl:rounded-[0.6dvw] w-full focus-visible:outline-0 mb-10 xl:mb-[3dvw]">
+                    <div
+                        class="size-9 xl:size-[2.7dvw] aspect-square rounded-xl xl:rounded-[0.9dvw] bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            class="h-[60%] min-h-[60%] transition-colors duration-75 stroke-white">
+                            <path d="M13 10V3L4 14h7v7l9-11h-7z" fill="white" stroke="white" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-start">
+                        <p class="capitalize font-bold text-xs xl:text-[0.86dvw] hidden md:block">
+                            InstaFlow</p>
+                        <p
+                            class="capitalize text-xs xl:text-[0.86dvw] hidden md:block text-gray-700 dark:text-gray-200">
+                            Automation Suite</p>
+                    </div>
+                </div>
+
+                <button id="dashboard-button"
+                    class="flex justify-start items-center gap-2 xl:gap-[0.7dvw] md:pr-10 xl:pr-[3dvw] h-9 xl:h-[2.55dvw] px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] w-full focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] dark:outline-white/50 outline-black/50 transition-[scale_colors] duration-75 active:scale-95 group hover:bg-indigo-400/10">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="h-[44.44%] min-h[44.44%] transition-colors duration-75 dark:stroke-white stroke-black group-hover:stroke-indigo-500 dark:group-hover:stroke-indigo-300">
+                        <rect width="7" height="9" x="3" y="3" rx="1" />
+                        <rect width="7" height="5" x="14" y="3" rx="1" />
+                        <rect width="7" height="9" x="14" y="12" rx="1" />
+                        <rect width="7" height="5" x="3" y="16" rx="1" />
+                    </svg>
+                    <p
+                        class="capitalize text-base xl:text-[1.15vw] hidden md:block text-black dark:text-white group-hover:text-indigo-500 dark:group-hover:text-indigo-300">
+                        dashboard</p>
+                </button>
+
+                <button id="audiences-button"
+                    class="flex justify-start items-center gap-2 xl:gap-[0.7dvw] md:pr-10 xl:pr-[3dvw] h-9 xl:h-[2.55dvw] px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] w-full focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] dark:outline-white/50 outline-black/50 transition-[scale_colors] duration-75 active:scale-95 group hover:bg-indigo-400/10">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="h-[44.44%] min-h[44.44%] transition-colors duration-75 dark:stroke-white stroke-black group-hover:stroke-indigo-500 dark:group-hover:stroke-indigo-300">
+                        <path d="M18 21a8 8 0 0 0-16 0" />
+                        <circle cx="10" cy="8" r="5" />
+                        <path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3" />
+                    </svg>
+                    <p
+                        class="capitalize text-base xl:text-[1.15vw] hidden md:block text-black dark:text-white group-hover:text-indigo-500 dark:group-hover:text-indigo-300">
+                        audiences</p>
+                </button>
+
+                <button id="settings-button"
+                    class="flex justify-start items-center gap-2 xl:gap-[0.7dvw] md:pr-10 xl:pr-[3dvw] h-9 xl:h-[2.55dvw] px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] w-full focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] dark:outline-white/50 outline-black/50 transition-[scale_colors] duration-75 active:scale-95 group bg-indigo-400/20 hover:bg-indigo-400/40">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="h-[44.44%] min-h[44.44%] transition-colors duration-75 stroke-indigo-700 dark:stroke-indigo-400 group-hover:stroke-indigo-900 dark:group-hover:stroke-indigo-200">
+                        <path
+                            d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915" />
+                        <circle cx="12" cy="12" r="3" />
+                    </svg>
+                    <p
+                        class="capitalize text-base xl:text-[1.15vw] hidden md:block dark:text-indigo-400 text-indigo-700 group-hover:text-indigo-900 dark:group-hover:text-indigo-200">
+                        settings</p>
+                </button>
+
+                <button id="logs-button"
+                    class="flex justify-start items-center gap-2 xl:gap-[0.7dvw] md:pr-10 xl:pr-[3dvw] h-9 xl:h-[2.55dvw] px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] w-full focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] dark:outline-white/50 outline-black/50 transition-[scale_colors] duration-75 active:scale-95 group hover:bg-indigo-400/10">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="h-[44.44%] min-h[44.44%] transition-colors duration-75 dark:stroke-white stroke-black group-hover:stroke-indigo-500 dark:group-hover:stroke-indigo-300">
+                        <path d="M3 5h1" />
+                        <path d="M3 12h1" />
+                        <path d="M3 19h1" />
+                        <path d="M8 5h1" />
+                        <path d="M8 12h1" />
+                        <path d="M8 19h1" />
+                        <path d="M13 5h8" />
+                        <path d="M13 12h8" />
+                        <path d="M13 19h8" />
+                    </svg>
+                    <p
+                        class="capitalize text-base xl:text-[1.15vw] hidden md:block text-black dark:text-white group-hover:text-indigo-500 dark:group-hover:text-indigo-300">
+                        logs</p>
+                </button>
+            </div>
+
+            <!-- partie user -->
+            <div
+                class="flex items-center border-t dark:border-t-white/20 border-t-black/20 justify-center md:justify-start h-14 xl:h-[4.2dvw] gap-2 xl:gap-[0.6dvw]">
+                <div class="h-4/5 flex-center aspect-square">
+                    <div
+                        class="size-[80%] rounded-full bg-indigo-700/30 flex-center text-xl xl:text-[1.43dvw] text-indigo-700">
+                        U
+                    </div>
+                </div>
+                <div class="md:flex flex-col hidden">
+                    <p class="text-[0.75rem] xl:text-[0.86dvw]">User</p>
+                    <p class="text-[0.75rem] xl:text-[0.86dvw] font-light">Pro Plan</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full h-screen overflow-y-auto">
+
+            <div id="settings-content" class="w-full h-full">
+                <div
+                    class="h-16 xl:h-[4.8dvw] dark:bg-[#202020] bg-gray-50/50 border-b dark:border-b-white/20 border-b-black/20 flex justify-between items-center w-full px-4 xl:px-[1.2dvw]">
+                    <p class="capitalize text-2xl xl:text-[1.72dvw]">settings</p>
+                    <div>
+                        <button
+                            class="new-campaign h-9 xl:h-[2.55dvw] px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] dark:outline-white/50 outline-black/50 transition-[scale_colors] duration-75 active:scale-95 bg-indigo-400/20 hover:bg-indigo-400/40 flex items-center gap-2 xl:gap-[0.7dvw] group">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="h-[44.44%] min-h[44.44%] transition-colors duration-75 stroke-indigo-700 dark:stroke-indigo-400 group-hover:stroke-indigo-900 dark:group-hover:stroke-indigo-200">
+                                <path d="m15 17 5-5-5-5" />
+                                <path d="M4 18v-2a4 4 0 0 1 4-4h12" />
+                            </svg>
+                            <p
+                                class="capitalize text-base xl:text-[1.15vw] dark:text-indigo-400 text-indigo-700 group-hover:text-indigo-900 dark:group-hover:text-indigo-200">
+                                New Campaign</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="h-[calc(100dvh-4.5rem)] xl:h-[calc(100dvh-5dvw)] p-4 xl:p-[1.2dvw]">
+                    <div
+                        class="dark:bg-[#232323] bg-white border-1 dark:border-white/10 shadow-md border-[#ebebeb] p-4 xl:p-[1.2vw] rounded-lg xl:rounded-[0.6dvw] space-y-2 xl:space-y-[0.6dvw]">
+                        <p class="capitalize text-base xl:text-[1.15dvw] text-gray-700 dark:text-gray-300">Settings
+                        </p>
+                        <div class="grid lg:grid-cols-2 gap-8 xl:gap-[2.4dvw]">
+                            <div class="space-y-4 xl:space-y-[1.2dvw] order-1 lg:order-2">
+                                <p class="capitalize text-sm xl:text-[1dvw] text-gray-700 dark:text-gray-300">Global
+                                    Settings</p>
+
+                                <div class="flex items-center justify-between">
+                                    <p class="capitalize text-xs xl:text-[0.86dvw] text-gray-800 dark:text-gray-400">
+                                        Switch between Light / Dark
+                                    </p>
+
+                                    <label for="theme-toggle"
+                                        class="relative inline-flex items-center cursor-pointer select-none">
+                                        <input id="theme-toggle" type="checkbox" class="sr-only peer" />
+
+                                        <!-- Track -->
+                                        <div class="w-14 xl:w-[4.2dvw] h-8 xl:h-[2.4dvw] rounded-full transition-colors
+                                                   bg-gray-200 dark:bg-zinc-700
+                                                   peer-checked:bg-indigo-500 peer-focus:outline-none
+                                                   peer-focus:ring-2 xl:peer-focus:ring-[0.12dvw]
+                                                   peer-focus:ring-indigo-400/60">
+                                        </div>
+
+                                        <!-- Knob -->
+                                        <span
+                                            class="pointer-events-none absolute left-1 xl:left-[0.3dvw] top-1 xl:top-[0.3dvw]
+                                                   size-6 xl:size-[1.8dvw] rounded-full bg-white dark:bg-[#232323] shadow
+                                                   transition-transform duration-200 peer-checked:translate-x-6 xl:peer-checked:translate-x-[1.8dvw]">
+                                        </span>
+
+                                        <!-- Sun icon (light) -->
+                                        <svg class="pointer-events-none absolute left-1.5 xl:left-[0.45dvw] top-1.5 xl:top-[0.45dvw]
+                                                   size-5 xl:size-[1.5dvw] text-yellow-400 transition-opacity
+                                                   opacity-100 peer-checked:opacity-0"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="4" />
+                                            <path d="M12 2v2" />
+                                            <path d="M12 20v2" />
+                                            <path d="m4.93 4.93 1.41 1.41" />
+                                            <path d="m17.66 17.66 1.41 1.41" />
+                                            <path d="M2 12h2" />
+                                            <path d="M20 12h2" />
+                                            <path d="m6.34 17.66-1.41 1.41" />
+                                            <path d="m19.07 4.93-1.41 1.41" />
+                                        </svg>
+
+                                        <!-- Moon icon (dark) -->
+                                        <svg class="pointer-events-none absolute right-1.5 xl:right-[0.45dvw] top-1.5 xl:top-[0.45dvw]
+                                                   size-5 xl:size-[1.5dvw] text-indigo-100 transition-opacity
+                                                   opacity-0 peer-checked:opacity-100"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path
+                                                d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401" />
+                                        </svg>
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center justify-between">
+                                    <p class="capitalize text-xs xl:text-[0.86dvw] text-gray-800 dark:text-gray-400">
+                                        Switch language
+                                    </p>
+
+                                    <!-- Dropdown Langue -->
+                                    <div id="lang-dropdown" class="relative inline-block text-left w-50 xl:w-[15dvw]">
+                                        <!-- Bouton -->
+                                        <button id="lang-trigger" class="flex w-full justify-between items-center gap-2 xl:gap-[0.6dvw]
+                                               h-8 xl:h-[2.4dvw] px-3 xl:px-[0.9dvw]
+                                               rounded-lg xl:rounded-[0.6dvw]
+                                               bg-gray-200/60 dark:bg-zinc-800
+                                               text-sm xl:text-[0.95dvw]
+                                               text-gray-900 dark:text-gray-100
+                                               focus:outline-none ring-1 xl:ring-[0.075dvw] ring-black/10 dark:ring-white/10
+                                               hover:bg-gray-200 dark:hover:bg-zinc-700 transition-colors">
+                                            <span id="lang-label" class="capitalize">Français</span>
+                                            <svg class="size-4 xl:size-[1.2dvw] opacity-70"
+                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path d="m6 9 6 6 6-6" />
+                                            </svg>
+                                        </button>
+
+                                        <!-- Menu -->
+                                        <div id="lang-menu" class="hidden absolute right-0 mt-2 xl:mt-[0.6dvw]
+                                                  w-50 xl:w-[15dvw]
+                                                  rounded-lg xl:rounded-[0.6dvw]
+                                                  bg-white dark:bg-[#232323]
+                                                  shadow-lg ring-1 xl:ring-[0.075dvw] ring-black/10 dark:ring-white/10
+                                                  overflow-hidden z-20">
+                                            <!-- Option FR -->
+                                            <button data-lang="fr" class="lang-option w-full text-left
+                                                 flex items-center gap-2 xl:gap-[0.6dvw]
+                                                 px-3 xl:px-[0.9dvw] h-9 xl:h-[2.55dvw]
+                                                 text-sm xl:text-[0.95dvw]
+                                                 text-gray-800 dark:text-gray-200
+                                                 hover:bg-indigo-500/10 dark:hover:bg-indigo-500/15
+                                                 transition-colors">
+                                                <span>Français</span>
+                                            </button>
+
+                                            <!-- Option EN -->
+                                            <button data-lang="en" class="lang-option w-full text-left
+                                                 flex items-center gap-2 xl:gap-[0.6dvw]
+                                                 px-3 xl:px-[0.9dvw] h-9 xl:h-[2.55dvw]
+                                                 text-sm xl:text-[0.95dvw]
+                                                 text-gray-800 dark:text-gray-200
+                                                 hover:bg-indigo-500/10 dark:hover:bg-indigo-500/15
+                                                 transition-colors">
+                                                <span>English</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button id="save-global-settings"
+                                    class="h-9 xl:h-[2.55dvw] px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] dark:outline-white/50 outline-black/50 transition-[scale_colors] duration-75 active:scale-95 bg-indigo-400/20 hover:bg-indigo-400/40 flex items-center gap-2 xl:gap-[0.7dvw] group">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="h-[44.44%] min-h[44.44%] transition-colors duration-75 stroke-indigo-700 dark:stroke-indigo-400 group-hover:stroke-indigo-900 dark:group-hover:stroke-indigo-200">
+                                        <path
+                                            d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" />
+                                        <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7" />
+                                        <path d="M7 3v4a1 1 0 0 0 1 1h7" />
+                                    </svg>
+                                    <p
+                                        class="capitalize text-base xl:text-[1.15vw] dark:text-indigo-400 text-indigo-700 group-hover:text-indigo-900 dark:group-hover:text-indigo-200">
+                                        save global settings</p>
+                                </button>
+                            </div>
+
+                            <div class="space-y-4 xl:space-y-[1.2dvw] order-2 lg:order-1">
+                                <!-- Titre section -->
+                                <p class="capitalize text-sm xl:text-[1dvw] text-gray-700 dark:text-gray-300">
+                                    Waits Between Actions
+                                </p>
+
+                                <!-- ==== Row: Follow ==== -->
+                                <div class="flex items-center justify-between my-2 xl:my-[0.6dvw]">
+                                    <p class="capitalize text-xs xl:text-[0.86dvw] text-gray-800 dark:text-gray-400">
+                                        Follow
+                                    </p>
+
+                                    <div class="flex items-center gap-2 xl:gap-[0.6dvw]" data-stepper data-min="3"
+                                        data-max="10" data-step="1">
+                                        <!-- – button -->
+                                        <button type="button" class="flex-center w-8 xl:w-[2.4dvw] h-8 xl:h-[2.4dvw] rounded-lg xl:rounded-[0.6dvw] active:scale-95
+               bg-gray-200/60 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700
+               ring-1 xl:ring-[0.075dvw] ring-black/10 dark:ring-white/10 transition-all dec">
+                                            <svg class="size-4 xl:size-[1.2dvw]" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M5 12h14" />
+                                            </svg>
+                                        </button>
+
+                                        <!-- input seconds -->
+                                        <div class="flex items-center gap-2 xl:gap-[0.6dvw] px-3 xl:px-[0.9dvw] h-8 xl:h-[2.4dvw]
+               rounded-lg xl:rounded-[0.6dvw] bg-white dark:bg-[#232323]
+               ring-1 xl:ring-[0.075dvw] ring-black/10 dark:ring-white/10">
+                                            <input type="number" inputmode="numeric" value="5" min="3" max="10" step="1"
+                                                class="w-16 xl:w-[4.8dvw] bg-transparent text-center text-sm xl:text-[0.95dvw]
+                 text-gray-900 dark:text-gray-100 outline-none
+                 [appearance:textfield]
+                 [&::-webkit-outer-spin-button]:appearance-none
+                 [&::-webkit-inner-spin-button]:appearance-none val">
+                                            <span
+                                                class="text-xs xl:text-[0.86dvw] text-gray-500 dark:text-gray-400">sec</span>
+                                        </div>
+
+                                        <!-- + button -->
+                                        <button type="button" class="flex-center w-8 xl:w-[2.4dvw] h-8 xl:h-[2.4dvw] rounded-lg xl:rounded-[0.6dvw] active:scale-95
+               bg-gray-200/60 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700
+               ring-1 xl:ring-[0.075dvw] ring-black/10 dark:ring-white/10 transition-all inc">
+                                            <svg class="size-4 xl:size-[1.2dvw]" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M12 5v14" />
+                                                <path d="M5 12h14" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- ==== Row: Unfollow ==== -->
+                                <div class="flex items-center justify-between my-2 xl:my-[0.6dvw]">
+                                    <p class="capitalize text-xs xl:text-[0.86dvw] text-gray-800 dark:text-gray-400">
+                                        Unfollow</p>
+                                    <div class="flex items-center gap-2 xl:gap-[0.6dvw]" data-stepper data-min="3"
+                                        data-max="10" data-step="1">
+                                        <button type="button" class="flex-center w-8 xl:w-[2.4dvw] h-8 xl:h-[2.4dvw] rounded-lg xl:rounded-[0.6dvw] active:scale-95
+                                 bg-gray-200/60 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700
+                                 ring-1 xl:ring-[0.075dvw] ring-black/10 dark:ring-white/10 transition-all dec">
+                                            <svg class="size-4 xl:size-[1.2dvw]" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M5 12h14" />
+                                            </svg>
+                                        </button>
+                                        <div class="flex items-center gap-2 xl:gap-[0.6dvw] px-3 xl:px-[0.9dvw] h-8 xl:h-[2.4dvw]
+                  rounded-lg xl:rounded-[0.6dvw] bg-white dark:bg-[#232323]
+                  ring-1 xl:ring-[0.075dvw] ring-black/10 dark:ring-white/10">
+                                            <input type="number" inputmode="numeric" value="5" min="3" max="10" step="1"
+                                                class="w-16 xl:w-[4.8dvw] bg-transparent text-center text-sm xl:text-[0.95dvw]
+                 text-gray-900 dark:text-gray-100 outline-none
+                 [appearance:textfield]
+                 [&::-webkit-outer-spin-button]:appearance-none
+                 [&::-webkit-inner-spin-button]:appearance-none val">
+                                            <span
+                                                class="text-xs xl:text-[0.86dvw] text-gray-500 dark:text-gray-400">sec</span>
+                                        </div>
+                                        <button type="button" class="flex-center w-8 xl:w-[2.4dvw] h-8 xl:h-[2.4dvw] rounded-lg xl:rounded-[0.6dvw] active:scale-95
+                                 bg-gray-200/60 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700
+                                 ring-1 xl:ring-[0.075dvw] ring-black/10 dark:ring-white/10 transition-all inc">
+                                            <svg class="size-4 xl:size-[1.2dvw]" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M12 5v14" />
+                                                <path d="M5 12h14" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- ==== Row: Removed Follower ==== -->
+                                <div class="flex items-center justify-between my-2 xl:my-[0.6dvw]">
+                                    <p class="capitalize text-xs xl:text-[0.86dvw] text-gray-800 dark:text-gray-400">
+                                        Removed
+                                        Follower</p>
+                                    <div class="flex items-center gap-2 xl:gap-[0.6dvw]" data-stepper data-min="3"
+                                        data-max="10" data-step="1">
+                                        <button type="button" class="flex-center w-8 xl:w-[2.4dvw] h-8 xl:h-[2.4dvw] rounded-lg xl:rounded-[0.6dvw] active:scale-95
+                                 bg-gray-200/60 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700
+                                 ring-1 xl:ring-[0.075dvw] ring-black/10 dark:ring-white/10 transition-all dec">
+                                            <svg class="size-4 xl:size-[1.2dvw]" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M5 12h14" />
+                                            </svg>
+                                        </button>
+                                        <div class="flex items-center gap-2 xl:gap-[0.6dvw] px-3 xl:px-[0.9dvw] h-8 xl:h-[2.4dvw]
+                  rounded-lg xl:rounded-[0.6dvw] bg-white dark:bg-[#232323]
+                  ring-1 xl:ring-[0.075dvw] ring-black/10 dark:ring-white/10">
+                                            <input type="number" inputmode="numeric" value="5" min="3" max="10" step="1"
+                                                class="w-16 xl:w-[4.8dvw] bg-transparent text-center text-sm xl:text-[0.95dvw]
+                 text-gray-900 dark:text-gray-100 outline-none
+                 [appearance:textfield]
+                 [&::-webkit-outer-spin-button]:appearance-none
+                 [&::-webkit-inner-spin-button]:appearance-none val">
+                                            <span
+                                                class="text-xs xl:text-[0.86dvw] text-gray-500 dark:text-gray-400">sec</span>
+                                        </div>
+                                        <button type="button" class="flex-center w-8 xl:w-[2.4dvw] h-8 xl:h-[2.4dvw] rounded-lg xl:rounded-[0.6dvw] active:scale-95
+                                 bg-gray-200/60 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700
+                                 ring-1 xl:ring-[0.075dvw] ring-black/10 dark:ring-white/10 transition-all inc">
+                                            <svg class="size-4 xl:size-[1.2dvw]" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M12 5v14" />
+                                                <path d="M5 12h14" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- ==== Row: Block Users ==== -->
+                                <div class="flex items-center justify-between my-2 xl:my-[0.6dvw]">
+                                    <p class="capitalize text-xs xl:text-[0.86dvw] text-gray-800 dark:text-gray-400">
+                                        Block
+                                        Users</p>
+                                    <div class="flex items-center gap-2 xl:gap-[0.6dvw]" data-stepper data-min="3"
+                                        data-max="10" data-step="1">
+                                        <button type="button" class="flex-center w-8 xl:w-[2.4dvw] h-8 xl:h-[2.4dvw] rounded-lg xl:rounded-[0.6dvw] active:scale-95
+                                 bg-gray-200/60 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700
+                                 ring-1 xl:ring-[0.075dvw] ring-black/10 dark:ring-white/10 transition-all dec">
+                                            <svg class="size-4 xl:size-[1.2dvw]" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M5 12h14" />
+                                            </svg>
+                                        </button>
+                                        <div class="flex items-center gap-2 xl:gap-[0.6dvw] px-3 xl:px-[0.9dvw] h-8 xl:h-[2.4dvw]
+                  rounded-lg xl:rounded-[0.6dvw] bg-white dark:bg-[#232323]
+                  ring-1 xl:ring-[0.075dvw] ring-black/10 dark:ring-white/10">
+                                            <input type="number" inputmode="numeric" value="5" min="3" max="10" step="1"
+                                                class="w-16 xl:w-[4.8dvw] bg-transparent text-center text-sm xl:text-[0.95dvw]
+                 text-gray-900 dark:text-gray-100 outline-none
+                 [appearance:textfield]
+                 [&::-webkit-outer-spin-button]:appearance-none
+                 [&::-webkit-inner-spin-button]:appearance-none val">
+                                            <span
+                                                class="text-xs xl:text-[0.86dvw] text-gray-500 dark:text-gray-400">sec</span>
+                                        </div>
+                                        <button type="button" class="flex-center w-8 xl:w-[2.4dvw] h-8 xl:h-[2.4dvw] rounded-lg xl:rounded-[0.6dvw] active:scale-95
+                                 bg-gray-200/60 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700
+                                 ring-1 xl:ring-[0.075dvw] ring-black/10 dark:ring-white/10 transition-all inc">
+                                            <svg class="size-4 xl:size-[1.2dvw]" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M12 5v14" />
+                                                <path d="M5 12h14" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- ==== Row: Randomization (20–100 %) ==== -->
+                                <div class="flex items-center justify-between my-2 xl:my-[0.6dvw]">
+                                    <p class="capitalize text-xs xl:text-[0.86dvw] text-gray-800 dark:text-gray-400">
+                                        Randomization (±%)</p>
+                                    <div class="flex items-center gap-2 xl:gap-[0.6dvw]" data-stepper data-min="20"
+                                        data-max="100" data-step="1">
+                                        <button type="button" class="flex-center w-8 xl:w-[2.4dvw] h-8 xl:h-[2.4dvw] rounded-lg xl:rounded-[0.6dvw] active:scale-95
+                                 bg-gray-200/60 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700
+                                 ring-1 xl:ring-[0.075dvw] ring-black/10 dark:ring-white/10 transition-all dec">
+                                            <svg class="size-4 xl:size-[1.2dvw]" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M5 12h14" />
+                                            </svg>
+                                        </button>
+                                        <div class="flex items-center gap-2 xl:gap-[0.6dvw] px-3 xl:px-[0.9dvw] h-8 xl:h-[2.4dvw]
+                  rounded-lg xl:rounded-[0.6dvw] bg-white dark:bg-[#232323]
+                  ring-1 xl:ring-[0.075dvw] ring-black/10 dark:ring-white/10">
+                                            <input type="number" inputmode="numeric" value="20" min="20" max="100"
+                                                step="1" class="w-16 xl:w-[4.8dvw] bg-transparent text-center text-sm xl:text-[0.95dvw]
+                 text-gray-900 dark:text-gray-100 outline-none
+                 [appearance:textfield]
+                 [&::-webkit-outer-spin-button]:appearance-none
+                 [&::-webkit-inner-spin-button]:appearance-none val">
+                                            <span
+                                                class="text-xs xl:text-[0.86dvw] text-gray-500 dark:text-gray-400">%</span>
+                                        </div>
+                                        <button type="button" class="flex-center w-8 xl:w-[2.4dvw] h-8 xl:h-[2.4dvw] rounded-lg xl:rounded-[0.6dvw] active:scale-95
+                                 bg-gray-200/60 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700
+                                 ring-1 xl:ring-[0.075dvw] ring-black/10 dark:ring-white/10 transition-all inc">
+                                            <svg class="size-4 xl:size-[1.2dvw]" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M12 5v14" />
+                                                <path d="M5 12h14" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <button id="save-waits-settings"
+                                    class="h-9 xl:h-[2.55dvw] px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] dark:outline-white/50 outline-black/50 transition-[scale_colors] duration-75 active:scale-95 bg-indigo-400/20 hover:bg-indigo-400/40 flex items-center gap-2 xl:gap-[0.7dvw] group">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="h-[44.44%] min-h[44.44%] transition-colors duration-75 stroke-indigo-700 dark:stroke-indigo-400 group-hover:stroke-indigo-900 dark:group-hover:stroke-indigo-200">
+                                        <path
+                                            d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" />
+                                        <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7" />
+                                        <path d="M7 3v4a1 1 0 0 0 1 1h7" />
+                                    </svg>
+                                    <p
+                                        class="capitalize text-base xl:text-[1.15vw] dark:text-indigo-400 text-indigo-700 group-hover:text-indigo-900 dark:group-hover:text-indigo-200">
+                                        save waits settings</p>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="settings.js">
+    </script>
+</body>
+
+</html>

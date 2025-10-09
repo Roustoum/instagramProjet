@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logs</title>
+    <link href="./output.css" rel="stylesheet">
+</head>
+
+<body class="h-full">
+    <div class="flex items-stretch text-black dark:text-white dark:bg-[#131313] selection:bg-indigo-400/20">
+        <!-- partie menu -->
+        <div
+            class="w-fit bg-gray-50 dark:bg-[#222222] h-screen space-y-2 xl:space-y-[0.6dvw] border-r dark:border-r-white/20 border-r-black/20 flex flex-col justify-between">
+            <div class="space-y-2 xl:space-y-[0.6dvw] p-4 xl:p-[1.2dvw]">
+
+                <div id="logo"
+                    class="flex justify-center md:justify-start items-center md:gap-2 xl:gap-[0.7dvw] h-10 xl:h-[3dvw] rounded-lg xl:rounded-[0.6dvw] w-full focus-visible:outline-0 mb-10 xl:mb-[3dvw]">
+                    <div
+                        class="size-9 xl:size-[2.7dvw] aspect-square rounded-xl xl:rounded-[0.9dvw] bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            class="h-[60%] min-h-[60%] transition-colors duration-75 stroke-white">
+                            <path d="M13 10V3L4 14h7v7l9-11h-7z" fill="white" stroke="white" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </div>
+                    <div class="flex flex-col items-start">
+                        <p class="capitalize font-bold text-xs xl:text-[0.86dvw] hidden md:block">
+                            InstaFlow</p>
+                        <p
+                            class="capitalize text-xs xl:text-[0.86dvw] hidden md:block text-gray-700 dark:text-gray-200">
+                            Automation Suite</p>
+                    </div>
+                </div>
+
+                <button id="dashboard-button"
+                    class="flex justify-start items-center gap-2 xl:gap-[0.7dvw] md:pr-10 xl:pr-[3dvw] h-9 xl:h-[2.55dvw] px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] w-full focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] dark:outline-white/50 outline-black/50 transition-[scale_colors] duration-75 active:scale-95 group hover:bg-indigo-400/10">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="h-[44.44%] min-h[44.44%] transition-colors duration-75 dark:stroke-white stroke-black group-hover:stroke-indigo-500 dark:group-hover:stroke-indigo-300">
+                        <rect width="7" height="9" x="3" y="3" rx="1" />
+                        <rect width="7" height="5" x="14" y="3" rx="1" />
+                        <rect width="7" height="9" x="14" y="12" rx="1" />
+                        <rect width="7" height="5" x="3" y="16" rx="1" />
+                    </svg>
+                    <p
+                        class="capitalize text-base xl:text-[1.15vw] hidden md:block text-black dark:text-white group-hover:text-indigo-500 dark:group-hover:text-indigo-300">
+                        dashboard</p>
+                </button>
+
+                <button id="audiences-button"
+                    class="flex justify-start items-center gap-2 xl:gap-[0.7dvw] md:pr-10 xl:pr-[3dvw] h-9 xl:h-[2.55dvw] px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] w-full focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] dark:outline-white/50 outline-black/50 transition-[scale_colors] duration-75 active:scale-95 group hover:bg-indigo-400/10">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="h-[44.44%] min-h[44.44%] transition-colors duration-75 dark:stroke-white stroke-black group-hover:stroke-indigo-500 dark:group-hover:stroke-indigo-300">
+                        <path d="M18 21a8 8 0 0 0-16 0" />
+                        <circle cx="10" cy="8" r="5" />
+                        <path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3" />
+                    </svg>
+                    <p
+                        class="capitalize text-base xl:text-[1.15vw] hidden md:block text-black dark:text-white group-hover:text-indigo-500 dark:group-hover:text-indigo-300">
+                        audiences</p>
+                </button>
+
+                <button id="settings-button"
+                    class="flex justify-start items-center gap-2 xl:gap-[0.7dvw] md:pr-10 xl:pr-[3dvw] h-9 xl:h-[2.55dvw] px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] w-full focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] dark:outline-white/50 outline-black/50 transition-[scale_colors] duration-75 active:scale-95 group hover:bg-indigo-400/10">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="h-[44.44%] min-h[44.44%] transition-colors duration-75 dark:stroke-white stroke-black group-hover:stroke-indigo-500 dark:group-hover:stroke-indigo-300">
+                        <path
+                            d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915" />
+                        <circle cx="12" cy="12" r="3" />
+                    </svg>
+                    <p
+                        class="capitalize text-base xl:text-[1.15vw] hidden md:block text-black dark:text-white group-hover:text-indigo-500 dark:group-hover:text-indigo-300">
+                        settings</p>
+                </button>
+
+                <button id="logs-button"
+                    class="flex justify-start items-center gap-2 xl:gap-[0.7dvw] md:pr-10 xl:pr-[3dvw] h-9 xl:h-[2.55dvw] px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] w-full focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] dark:outline-white/50 outline-black/50 transition-[scale_colors] duration-75 active:scale-95 group bg-indigo-400/20 hover:bg-indigo-400/40">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="h-[44.44%] min-h[44.44%] transition-colors duration-75 stroke-indigo-700 dark:stroke-indigo-400 group-hover:stroke-indigo-900 dark:group-hover:stroke-indigo-200">
+                        <path d="M3 5h1" />
+                        <path d="M3 12h1" />
+                        <path d="M3 19h1" />
+                        <path d="M8 5h1" />
+                        <path d="M8 12h1" />
+                        <path d="M8 19h1" />
+                        <path d="M13 5h8" />
+                        <path d="M13 12h8" />
+                        <path d="M13 19h8" />
+                    </svg>
+                    <p
+                        class="capitalize text-base xl:text-[1.15vw] hidden md:block dark:text-indigo-400 text-indigo-700 group-hover:text-indigo-900 dark:group-hover:text-indigo-200">
+                        logs</p>
+                </button>
+            </div>
+
+            <!-- partie user -->
+            <div
+                class="flex items-center border-t dark:border-t-white/20 border-t-black/20 justify-center md:justify-start h-14 xl:h-[4.2dvw] gap-2 xl:gap-[0.6dvw]">
+                <div class="h-4/5 flex-center aspect-square">
+                    <div
+                        class="size-[80%] rounded-full bg-indigo-700/30 flex-center text-xl xl:text-[1.43dvw] text-indigo-700">
+                        U
+                    </div>
+                </div>
+                <div class="md:flex flex-col hidden">
+                    <p class="text-[0.75rem] xl:text-[0.86dvw]">User</p>
+                    <p class="text-[0.75rem] xl:text-[0.86dvw] font-light">Pro Plan</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full h-screen overflow-y-auto">
+            <div id="logs-content" class="w-full h-full">
+                <div
+                    class="h-16 xl:h-[4.8dvw] dark:bg-[#202020] bg-gray-50/50 border-b dark:border-b-white/20 border-b-black/20 flex justify-between items-center w-full px-4 xl:px-[1.2dvw]">
+                    <p class="capitalize text-2xl xl:text-[1.72dvw]">logs</p>
+                    <div>
+                        <button
+                            class="new-campaign h-9 xl:h-[2.55dvw] px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] dark:outline-white/50 outline-black/50 transition-[scale_colors] duration-75 active:scale-95 bg-indigo-400/20 hover:bg-indigo-400/40 flex items-center gap-2 xl:gap-[0.7dvw] group">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="h-[44.44%] min-h[44.44%] transition-colors duration-75 stroke-indigo-700 dark:stroke-indigo-400 group-hover:stroke-indigo-900 dark:group-hover:stroke-indigo-200">
+                                <path d="m15 17 5-5-5-5" />
+                                <path d="M4 18v-2a4 4 0 0 1 4-4h12" />
+                            </svg>
+                            <p
+                                class="capitalize text-base xl:text-[1.15vw] dark:text-indigo-400 text-indigo-700 group-hover:text-indigo-900 dark:group-hover:text-indigo-200">
+                                New Campaign</p>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="h-[calc(100dvh-4.5rem)] xl:h-[calc(100dvh-5dvw)] p-4 xl:p-[1.2dvw]">
+                    <div
+                        class="dark:bg-[#232323] bg-white border-1 dark:border-white/10 shadow-md border-[#ebebeb] p-4 xl:p-[1.2vw] rounded-lg xl:rounded-[0.6dvw] h-full space-y-2 xl:space-y-[0.6dvw]">
+                        <div class="flex justify-between">
+                            <p class="capitalize text-base xl:text-[1.15dvw] text-gray-700 dark:text-gray-300">Total
+                                Activity Logs
+                            </p>
+                            <button
+                                class="h-9 xl:h-[2.55dvw] px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] dark:outline-white/50 outline-black/50 transition-[scale_colors] duration-75 active:scale-95 bg-indigo-400/20 hover:bg-indigo-400/40 flex items-center gap-2 xl:gap-[0.7dvw] group">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="h-[44.44%] min-h[44.44%] transition-colors duration-75 stroke-indigo-700 dark:stroke-indigo-400 group-hover:stroke-indigo-900 dark:group-hover:stroke-indigo-200">
+                                    <path d="m16 22-1-4" />
+                                    <path
+                                        d="M19 13.99a1 1 0 0 0 1-1V12a2 2 0 0 0-2-2h-3a1 1 0 0 1-1-1V4a2 2 0 0 0-4 0v5a1 1 0 0 1-1 1H6a2 2 0 0 0-2 2v.99a1 1 0 0 0 1 1" />
+                                    <path d="M5 14h14l1.973 6.767A1 1 0 0 1 20 22H4a1 1 0 0 1-.973-1.233z" />
+                                    <path d="m8 22 1-4" />
+                                </svg>
+                                <p
+                                    class="capitalize text-base xl:text-[1.15vw] dark:text-indigo-400 text-indigo-700 group-hover:text-indigo-900 dark:group-hover:text-indigo-200">
+                                    Clear logs</p>
+                            </button>
+                        </div>
+
+                        <div
+                            class="w-full h-[92%] border border-black/10 dark:bg-black bg-white px-4 xl:px-[1.2dvw] overflow-y-auto">
+                            <p id="logs-text" class="text-base xl:text-[1.15dvw]">text</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="logs.js">
+    </script>
+</body>
+
+</html>
