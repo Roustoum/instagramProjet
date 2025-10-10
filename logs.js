@@ -69,13 +69,17 @@ test.addEventListener("click", () => {
     chrome.runtime.sendMessage({ type: "TEST_LOGS" });
 })
 
-// test dark mode 
-const logo = document.getElementById('logo');
-logo.onclick = () => {
-    if (document.documentElement.classList.contains("dark"))
-        document.documentElement.classList.remove("dark")
-    else {
+function setThemeUI(theme) {
+    if (theme === "dark")
         document.documentElement.classList.add("dark")
+    else {
+        document.documentElement.classList.remove("dark")
     }
-
 }
+
+chrome.runtime.sendMessage({ type: "GET_SETTINGS" }, (res) => {
+    console.log("ani hna !",res.global)
+    if (!res?.ok) return;
+    const g = res.global || {};
+    setThemeUI(g.theme || "light");
+})

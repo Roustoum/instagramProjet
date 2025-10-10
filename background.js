@@ -43,8 +43,33 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
 
 // ---- Config pour logs
 const LOG_KEY = "logs";
-const MAX_LOGS = 200;
+const SETTINGS_GLOBAL_KEY = "settings_global";
+const SETTINGS_WAITS_KEY = "settings_waits";
 
+const MAX_LOGS = 200;
+const DEFAULT_GLOBAL = {
+    theme: "light",        // "light" | "dark"
+    language: "fr"         // "fr" | "en"
+};
+
+const DEFAULT_WAITS = {
+    follow: 5,             // sec
+    unfollow: 5,
+    removedFollower: 5,
+    blockUsers: 5,
+    randomPercent: 20      // 20–100
+};
+
+// Helpers storage
+const getLocal = async (key) => {
+    const obj = await chrome.storage.local.get(key);
+    return obj?.[key];
+};
+const setLocal = async (key, value) => {
+    await chrome.storage.local.set({ [key]: value });
+};
+
+const clamp = (n, min, max) => Math.max(min, Math.min(max, n | 0));
 
 const getLogs = async () => {
     const { [LOG_KEY]: logs = [] } = await chrome.storage.local.get(LOG_KEY);
@@ -90,6 +115,11 @@ async function clearLogs() {
 // ---- Events
 
 chrome.runtime.onInstalled.addListener(async (details) => {
+    const existingGlobal = await getLocal(SETTINGS_GLOBAL_KEY);
+    const existingWaits = await getLocal(SETTINGS_WAITS_KEY);
+
+    if (!existingGlobal) await setLocal(SETTINGS_GLOBAL_KEY, DEFAULT_GLOBAL);
+    if (!existingWaits) await setLocal(SETTINGS_WAITS_KEY, DEFAULT_WAITS);
     await writeLog(`Extension installed at ${fmtNow()} (reason: ${details.reason})`);
 });
 
@@ -115,6 +145,36 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
         } else if (msg?.type === "TEST_LOGS") {
             test()
             sendResponse({ ok: true })
+        } else if (msg?.type === "GET_SETTINGS") {
+            const g = (await getLocal(SETTINGS_GLOBAL_KEY)) || DEFAULT_GLOBAL;
+            const w = (await getLocal(SETTINGS_WAITS_KEY)) || DEFAULT_WAITS;
+            sendResponse({ ok: true, global: g, waits: w });
+        } else if (msg?.type === "SET_GLOBAL_SETTINGS") {
+            const payload = msg?.payload || {};
+            const theme = payload.theme === "dark" ? "dark" : "light";
+            const language = payload.language === "en" ? "en" : "fr";
+            const newVal = { theme, language };
+            await setLocal(SETTINGS_GLOBAL_KEY, newVal);
+
+            if (typeof writeLog === "function") {
+                await writeLog("Global settings saved");
+            }
+            sendResponse({ ok: true });
+        } else if (msg?.type === "SET_WAITS_SETTINGS") {
+            const p = msg?.payload || {};
+            const newWaits = {
+                follow: clamp(p.follow ?? 5, 3, 10),
+                unfollow: clamp(p.unfollow ?? 5, 3, 10),
+                removedFollower: clamp(p.removedFollower ?? 5, 3, 10),
+                blockUsers: clamp(p.blockUsers ?? 5, 3, 10),
+                randomPercent: clamp(p.randomPercent ?? 20, 20, 100),
+            };
+            await setLocal(SETTINGS_WAITS_KEY, newWaits);
+
+            if (typeof writeLog === "function") {
+                await writeLog("Waits settings saved");
+            }
+            sendResponse({ ok: true });
         }
     })();
     return true; // async
