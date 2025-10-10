@@ -107,28 +107,6 @@ actionOptions.forEach(btn => {
 
 //----------------------------------------------------------------------------------------------------------------
 
-const toggleBtn = document.getElementById('select-toggle');
-const iconSelect = toggleBtn.querySelector('.icon-select');
-const iconUncheck = toggleBtn.querySelector('.icon-uncheck');
-const label = toggleBtn.querySelector('.label');
-
-toggleBtn.addEventListener('click', () => {
-    const isSelect = toggleBtn.dataset.state !== 'uncheck'; // état actuel
-
-    // bascule icônes
-    iconSelect.classList.toggle('hidden', isSelect);   // cacher si on passe à uncheck
-    iconUncheck.classList.toggle('hidden', !isSelect); // montrer si uncheck
-
-    // label
-    label.textContent = isSelect ? 'unselect all' : 'select all';
-
-    // état ARIA + dataset
-    toggleBtn.dataset.state = isSelect ? 'uncheck' : 'select';
-    toggleBtn.setAttribute('aria-pressed', String(isSelect));
-});
-
-//----------------------------------------------------------------------------------------------------------------
-
 // go to instagram buttons 
 document.querySelectorAll('.new-campaign').forEach(btn => {
     btn.onclick = async () => {

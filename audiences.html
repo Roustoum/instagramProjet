@@ -137,7 +137,7 @@
                 <div class="h-[calc(100dvh-4.5rem)] xl:h-[calc(100dvh-5dvw)] p-4 xl:p-[1.2dvw]">
                     <div class="grid lg:grid-cols-3 gap-4 xl:gap-[1.2dvw]">
                         <div
-                            class="dark:bg-[#232323] bg-white border-1 dark:border-white/10 shadow-md border-[#ebebeb] p-4 xl:p-[1.2vw] rounded-lg xl:rounded-[0.6dvw] space-y-2 xl:space-y-[0.6dvw]">
+                            class="dark:bg-[#232323] h-fit bg-white border-1 dark:border-white/10 shadow-md border-[#ebebeb] p-4 xl:p-[1.2vw] rounded-lg xl:rounded-[0.6dvw] space-y-2 xl:space-y-[0.6dvw]">
                             <p class="capitalize text-sm xl:text-[1dvw] text-gray-700 dark:text-gray-300">audiences list
                             </p>
                             <div class="flex w-full gap-2 xl:gap-[0.6dvw]">
@@ -237,38 +237,6 @@
                             </div>
 
                             <div class="flex flex-wrap gap-2 xl:gap-[0.6dvw]">
-                                <button id="select-toggle"
-                                    class="h-9 xl:h-[2.55dvw] px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] dark:outline-white/50 outline-black/50 transition-[scale_colors] duration-75 active:scale-95 bg-indigo-400/20 hover:bg-indigo-400/40 flex items-center gap-2 xl:gap-[0.7dvw] group"
-                                    aria-pressed="false" data-state="select">
-
-                                    <!-- Icône SELECT (check in square) -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" class="icon-select h-[44.44%] min-h[44.44%] transition-colors duration-75
-                stroke-indigo-700 dark:stroke-indigo-400
-                group-hover:stroke-indigo-900 dark:group-hover:stroke-indigo-200">
-                                        <path d="m12 15 2 2 4-4" />
-                                        <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
-                                        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
-                                    </svg>
-
-                                    <!-- Icône UNCHECK (celle que tu as donnée) -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" class="icon-uncheck hidden h-[44.44%] min-h[44.44%] transition-colors duration-75
-                stroke-indigo-700 dark:stroke-indigo-400
-                group-hover:stroke-indigo-900 dark:group-hover:stroke-indigo-200">
-                                        <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
-                                        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
-                                    </svg>
-
-                                    <p class="label capitalize text-base xl:text-[1.15vw]
-            dark:text-indigo-400 text-indigo-700
-            group-hover:text-indigo-900 dark:group-hover:text-indigo-200">
-                                        select all
-                                    </p>
-                                </button>
-
 
                                 <div class="relative flex grow">
                                     <input type="text" placeholder="search"

@@ -42,7 +42,8 @@
     ],
     "permissions": [
         "tabs",
-        "cookies"
+        "cookies",
+        "storage"
     ],
     "host_permissions": [
         "https://*.instagram.com/*"

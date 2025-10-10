@@ -16,6 +16,59 @@ document.querySelectorAll('.new-campaign').forEach(btn => {
     };
 });
 
+// ---- Sélecteurs
+const $logsContainer = document.getElementById("logs-container");
+const $logs = document.getElementById("logs-text");
+
+// ---- Utils
+const escapeHTML = (s) =>
+    String(s).replace(/[&<>"']/g, (c) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    }[c]));
+
+const formatLine = (entry) => {
+    const base = `[${entry.time}] ${entry.msg}`;
+    const meta = entry.meta ? ` ${escapeHTML(JSON.stringify(entry.meta))}` : "";
+    return `${escapeHTML(base)}${meta}`;
+};
+
+// ---- Fonction de rendu + scroll automatique
+const render = (logs) => {
+    if (!Array.isArray(logs)) return;
+    $logs.innerHTML = logs.map(formatLine).join("<br>");
+    // scroll automatique tout en bas
+    $logsContainer.scrollTop = $logsContainer.scrollHeight;
+};
+
+// ---- Charger les logs au démarrage
+chrome.runtime.sendMessage({ type: "GET_LOGS" }, (res) => {
+    if (res?.ok) {
+        render(res.logs);
+    }
+});
+
+// ---- Temps réel: écoute des changements storage
+chrome.storage.onChanged.addListener((changes, area) => {
+    if (area === "local" && changes.logs) {
+        render(changes.logs.newValue || []);
+    }
+});
+
+const clearBtn = document.getElementById("clear-logs-button")
+clearBtn.addEventListener("click", () => {
+    chrome.runtime.sendMessage({ type: "CLEAR_LOGS" });
+});
+
+const test = document.getElementById("test")
+test.addEventListener("click", () => {
+    console.log("test")
+    chrome.runtime.sendMessage({ type: "TEST_LOGS" });
+})
+
 // test dark mode 
 const logo = document.getElementById('logo');
 logo.onclick = () => {
