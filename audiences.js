@@ -107,6 +107,81 @@ actionOptions.forEach(btn => {
 
 //----------------------------------------------------------------------------------------------------------------
 
+const addBtn = document.getElementById("add-button");
+const searchInput = document.getElementById('search-audiences-input');
+const listEl = document.getElementById('audiences-list');
+
+let allAudiences = [];
+
+function renderAudiences(items) {
+    if (!Array.isArray(items)) return;
+
+    listEl.innerHTML = items.map(({ name, count }) => {
+        const badge = (name[0] || "?").toUpperCase();
+        return `
+        <div class="flex gap-4 xl:gap-[1.2dvw] items-center bg-indigo-400/10 dark:bg-indigo-800/10 p-2 xl:p-[0.6dvw] rounded-lg xl:rounded-[0.6dvw]">
+          <div class="w-9 xl:w-[2.7dvw] aspect-square bg-indigo-800 rounded-lg xl:rounded-[0.6dvw] flex-center text-base xl:text-[1.15dvw] font-extrabold text-white">
+            ${badge}
+          </div>
+          <div class="flex flex-col">
+            <p class="capitalize text-xs xl:text-[0.86dvw] font-bold text-black dark:text-gray-200">${name}</p>
+            <p class="capitalize text-xs xl:text-[0.86dvw] text-gray-700 dark:text-gray-300">${count} profiles</p>
+          </div>
+        </div>
+      `;
+    }).join('');
+}
+
+// Charge la liste
+function loadAudiences() {
+    chrome.runtime.sendMessage({ type: "GET_AUDIENCES" }, (res) => {
+        if (!res?.ok) return;
+        allAudiences = res.items || [];
+        applyAudienceFilter(); // rend avec le filtre courant (même si vide)
+    });
+}
+
+function applyAudienceFilter() {
+    const q = (searchInput.value || "").trim().toLowerCase();
+    const filtered = q
+        ? allAudiences.filter(a => a.name.toLowerCase().includes(q))
+        : allAudiences;
+    renderAudiences(filtered);
+}
+
+addBtn.addEventListener('click', () => {
+    const name = (prompt("Add the audience :") || "").trim();
+    if (!name) return; // rien à ajouter
+    chrome.runtime.sendMessage({ type: "ADD_AUDIENCE", payload: { name } }, (res) => {
+        // reset input si ok
+        if (res?.ok) {
+            searchInput.value = "";
+            loadAudiences();
+        } else {
+            // Optionnel: toast / message d’erreur selon res.error
+            // "ALREADY_EXISTS" | "EMPTY_NAME" | ...
+        }
+    });
+});
+
+// Temps réel (si d'autres vues modifient)
+chrome.storage.onChanged.addListener((changes, area) => {
+    if (area === "local" && changes.audiences) {
+        loadAudiences();
+    }
+    if (area === "local" && changes.settings_global) {
+        const g = changes.settings_global.newValue || {};
+        console.log("Theme changed to", g.theme)
+        setThemeUI(g.theme || "light");
+    }
+});
+
+// Init
+document.addEventListener('DOMContentLoaded', loadAudiences);
+searchInput.addEventListener("input", applyAudienceFilter);
+
+//----------------------------------------------------------------------------------------------------------------
+
 // go to instagram buttons 
 document.querySelectorAll('.new-campaign').forEach(btn => {
     btn.onclick = async () => {
@@ -114,12 +189,16 @@ document.querySelectorAll('.new-campaign').forEach(btn => {
     };
 });
 
-// test dark mode 
-const logo = document.getElementById('logo');
-logo.onclick = () => {
-    if (document.documentElement.classList.contains("dark"))
-        document.documentElement.classList.remove("dark")
-    else {
+function setThemeUI(theme) {
+    if (theme === "dark")
         document.documentElement.classList.add("dark")
+    else {
+        document.documentElement.classList.remove("dark")
     }
 }
+
+chrome.runtime.sendMessage({ type: "GET_SETTINGS" }, (res) => {
+    if (!res?.ok) return;
+    const g = res.global || {};
+    setThemeUI(g.theme || "light");
+})

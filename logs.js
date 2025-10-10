@@ -78,7 +78,6 @@ function setThemeUI(theme) {
 }
 
 chrome.runtime.sendMessage({ type: "GET_SETTINGS" }, (res) => {
-    console.log("ani hna !",res.global)
     if (!res?.ok) return;
     const g = res.global || {};
     setThemeUI(g.theme || "light");

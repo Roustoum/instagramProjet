@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="">
 
 <head>
     <meta charset="UTF-8">
@@ -141,7 +141,7 @@
                             <p class="capitalize text-sm xl:text-[1dvw] text-gray-700 dark:text-gray-300">audiences list
                             </p>
                             <div class="flex w-full gap-2 xl:gap-[0.6dvw]">
-                                <button
+                                <button id="add-button"
                                     class="h-9 xl:h-[2.55dvw] px-3 xl:px-[0.7vw] rounded-lg xl:rounded-[0.6dvw] focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] dark:outline-white/50 outline-black/50 transition-[scale_colors] duration-75 active:scale-95 bg-indigo-400/20 hover:bg-indigo-400/40 flex items-center gap-2 xl:gap-[0.7dvw] group">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                         stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -156,7 +156,7 @@
                                 </button>
 
                                 <div class="relative flex grow">
-                                    <input type="text" placeholder="search"
+                                    <input id="search-audiences-input" type="text" placeholder="search"
                                         class="rounded-lg xl:rounded-[0.6dvw] !relative p-2 xl:p-[0.6vw] pl-9 xl:pl-[2.7vw] text-xs xl:text-[0.8625vw] focus-visible:outline-1 xl:focus-visible:outline-[0.075dvw] dark:text-[#b4b4b4] text-black dark:outline-white/50 outline-black/50 dark:placeholder-[#b4b4b4] placeholder-black border-2 xl:border-[0.15vw] dark:border-white/20 border-[#e0e0e0] w-full" />
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -167,9 +167,9 @@
                                 </div>
                             </div>
 
-                            <div class="space-y-4 xl:space-y-[1.2dvw]" id="audiences-list">
+                            <div class="space-y-4 xl:space-y-[1.2dvw] mt-4 xl:mt-[1.2dvw]" id="audiences-list">
 
-                                <div
+                                <!-- <div
                                     class="flex gap-4 xl:gap-[1.2dvw] items-center bg-indigo-400/10 dark:bg-indigo-800/10 p-2 xl:p-[0.6dvw] rounded-lg xl:rounded-[0.6dvw]">
                                     <div
                                         class="w-9 aspect-square bg-indigo-800 rounded-lg xl:rounded-[0.6dvw] flex-center text-base xl:text-[1.15dvw] font-extrabold text-white">
@@ -185,7 +185,7 @@
                                             97 profiles
                                         </p>
                                     </div>
-                                </div>
+                                </div> -->
 
                             </div>
                         </div>
@@ -259,7 +259,7 @@
              bg-gray-200/60 dark:bg-zinc-800
              text-sm xl:text-[0.95dvw]
              text-gray-900 dark:text-gray-100
-             focus:outline-none ring-1 ring-black/10 dark:ring-white/10
+             focus:outline-none ring-1 xl:ring-[0.075dvw] ring-black/10 dark:ring-white/10
              hover:bg-gray-200 dark:hover:bg-zinc-700 transition-colors">
                                         <!-- current icon -->
                                         <span id="action-icon" class="size-4 xl:size-[1.2dvw]">
@@ -284,7 +284,7 @@
                                     <!-- Menu -->
                                     <div id="action-menu"
                                         class="hidden absolute right-0 mt-2 xl:mt-[0.6dvw] w-56 xl:w-[16dvw]
-                rounded-lg xl:rounded-[0.6dvw] bg-white dark:bg-[#232323] shadow-lg ring-1 ring-black/10 dark:ring-white/10 overflow-hidden z-20">
+                rounded-lg xl:rounded-[0.6dvw] bg-white dark:bg-[#232323] shadow-lg ring-1 xl:ring-[0.075dvw] ring-black/10 dark:ring-white/10 overflow-hidden z-20">
                                         <!-- Follow -->
                                         <button data-action="follow"
                                             class="action-option w-full text-left
@@ -367,33 +367,17 @@
 
                             <!-- Wrapper -->
                             <div
-                                class="rounded-lg xl:rounded-[0.6dvw] overflow-hidden ring-1 ring-black/10 dark:ring-white/10 bg-white dark:bg-[#232323]">
+                                class="rounded-lg xl:rounded-[0.6dvw] overflow-hidden ring-1 xl:ring-[0.075dvw] ring-black/10 dark:ring-white/10 bg-white dark:bg-[#232323]">
 
                                 <!-- Header -->
-                                <div class="grid grid-cols-[auto_1.4fr_1fr_1fr_1fr_1fr]
-                items-center gap-2 xl:gap-[0.6dvw]
-                px-3 xl:px-[0.9dvw] h-10 xl:h-[3dvw]
-                text-xs xl:text-[0.86dvw]
-                font-medium
-                bg-gray-50 dark:bg-zinc-800
-                text-gray-700 dark:text-gray-300">
+                                <div
+                                    class="grid grid-cols-[auto_1.4fr_1fr_1fr_1fr_1fr_1fr]
+                items-center gap-2 xl:gap-[0.6dvw] px-3 xl:px-[0.9dvw] h-10 xl:h-[3dvw] text-xs xl:text-[0.86dvw] font-medium bg-gray-50 dark:bg-zinc-800 text-gray-700 dark:text-gray-300">
                                     <div class="flex items-center gap-2 xl:gap-[0.6dvw]">
                                         <label class="relative inline-flex items-center cursor-pointer select-none">
                                             <input type="checkbox" class="peer sr-only" aria-label="Select row">
 
-                                            <span class="w-4 xl:w-[1.2dvw] h-4 xl:h-[1.2dvw]
-                                                     rounded-[0.25rem] xl:rounded-[0.3dvw]
-                                                     ring-1 ring-black/20 dark:ring-white/20
-                                                     bg-white dark:bg-[#2b2b2b]
-                                                     flex items-center justify-center
-                                                     transition-colors
-                                                     peer-focus:outline-none peer-focus:ring-2 xl:peer-focus:ring-[0.12dvw] peer-focus:ring-indigo-400/60
-                                          
-                                                     /* check visible quand coché */
-                                                     [&>svg]:opacity-0 peer-checked:[&>svg]:opacity-100
-                                          
-                                                     /* 💡 border (ring) prend la couleur du check */
-                                                     peer-checked:ring-indigo-600 dark:peer-checked:ring-indigo-400
+                                            <span class="w-4 xl:w-[1.2dvw] h-4 xl:h-[1.2dvw] rounded-[0.25rem] xl:rounded-[0.3dvw] ring-1 xl:ring-[0.075dvw] ring-black/20 dark:ring-white/20 bg-white dark:bg-[#2b2b2b] flex items-center justify-center transition-colors peer-focus:outline-none peer-focus:ring-2 xl:peer-focus:ring-[0.12dvw] peer-focus:ring-indigo-400/60 [&>svg]:opacity-0 peer-checked:[&>svg]:opacity-100 peer-checked:ring-indigo-600 dark:peer-checked:ring-indigo-400
                                                      ">
 
                                                 <svg class="size-3 xl:size-[0.9dvw]
@@ -407,9 +391,10 @@
                                         </label>
                                     </div>
                                     <div class="truncate">Nom</div>
-                                    <div class="truncate">Titre de poste</div>
-                                    <div class="truncate">Entreprise</div>
-                                    <div class="truncate">Activité</div>
+                                    <div class="truncate">Followed</div>
+                                    <div class="truncate">Unfollowed</div>
+                                    <div class="truncate">R-Follower</div>
+                                    <div class="truncate">Blocked</div>
                                     <div class="truncate">Tags</div>
                                 </div>
 
@@ -417,7 +402,7 @@
                                 <div class="divide-y divide-black/10 dark:divide-white/10">
                                     <!-- Row 1 -->
                                     <div
-                                        class="grid grid-cols-[auto_1.4fr_1fr_1fr_1fr_1fr] items-center gap-2 xl:gap-[0.6dvw] px-3 xl:px-[0.9dvw] h-12 xl:h-[3.3dvw] text-sm xl:text-[0.95dvw] text-gray-900 dark:text-gray-100">
+                                        class="grid grid-cols-[auto_1.4fr_1fr_1fr_1fr_1fr_1fr] items-center gap-2 xl:gap-[0.6dvw] px-3 xl:px-[0.9dvw] h-12 xl:h-[3.3dvw] text-sm xl:text-[0.95dvw] text-gray-900 dark:text-gray-100">
                                         <div class="flex items-center gap-2 xl:gap-[0.6dvw]">
                                             <!-- checkbox -->
                                             <label class="relative inline-flex items-center cursor-pointer select-none">
@@ -425,7 +410,7 @@
 
                                                 <span class="w-4 xl:w-[1.2dvw] h-4 xl:h-[1.2dvw]
                                                          rounded-[0.25rem] xl:rounded-[0.3dvw]
-                                                         ring-1 ring-black/20 dark:ring-white/20
+                                                         ring-1 xl:ring-[0.075dvw] ring-black/20 dark:ring-white/20
                                                          bg-white dark:bg-[#2b2b2b]
                                                          flex items-center justify-center
                                                          transition-colors
@@ -449,6 +434,7 @@
                                             </label>
                                         </div>
                                         <div class="truncate">@thetxczw</div>
+                                        <div class="text-gray-500 dark:text-gray-400 truncate">—</div>
                                         <div class="text-gray-500 dark:text-gray-400 truncate">—</div>
                                         <div class="text-gray-500 dark:text-gray-400 truncate">—</div>
                                         <div class="text-gray-500 dark:text-gray-400 truncate">—</div>

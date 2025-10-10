@@ -45,6 +45,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
 const LOG_KEY = "logs";
 const SETTINGS_GLOBAL_KEY = "settings_global";
 const SETTINGS_WAITS_KEY = "settings_waits";
+const AUDIENCES_KEY = "audiences";
 
 const MAX_LOGS = 200;
 const DEFAULT_GLOBAL = {
@@ -112,6 +113,33 @@ async function clearLogs() {
     await setLogs([]);
 }
 
+async function listAudiences() {
+    const arr = await getLocal(AUDIENCES_KEY);
+    const names = Array.isArray(arr) ? arr : ["default"];
+    // Toujours renvoyer count=0
+    return names.map((name) => ({ name, count: 0 }));
+}
+
+async function addAudience(nameRaw) {
+    const name = String(nameRaw || "").trim();
+    if (!name) return { ok: false, error: "EMPTY_NAME" };
+
+    let arr = await getLocal(AUDIENCES_KEY);
+    if (!Array.isArray(arr)) arr = ["default"];
+
+    // dédupe case-insensitive
+    const exists = arr.some((n) => n.toLowerCase() === name.toLowerCase());
+    if (exists) return { ok: false, error: "ALREADY_EXISTS" };
+
+    arr.push(name);
+    await setLocal(AUDIENCES_KEY, arr);
+    if (typeof writeLog === "function") await writeLog("Audience added", { name });
+
+    // notifier les vues si besoin
+    chrome.runtime.sendMessage({ type: "AUDIENCES_UPDATED" }).catch(() => { });
+    return { ok: true };
+}
+
 // ---- Events
 
 chrome.runtime.onInstalled.addListener(async (details) => {
@@ -120,6 +148,11 @@ chrome.runtime.onInstalled.addListener(async (details) => {
 
     if (!existingGlobal) await setLocal(SETTINGS_GLOBAL_KEY, DEFAULT_GLOBAL);
     if (!existingWaits) await setLocal(SETTINGS_WAITS_KEY, DEFAULT_WAITS);
+
+    const existing = await getLocal(AUDIENCES_KEY);
+    if (!Array.isArray(existing)) {
+        await setLocal(AUDIENCES_KEY, ["default"]);
+    }
     await writeLog(`Extension installed at ${fmtNow()} (reason: ${details.reason})`);
 });
 
@@ -175,6 +208,12 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
                 await writeLog("Waits settings saved");
             }
             sendResponse({ ok: true });
+        } else if (msg?.type === "GET_AUDIENCES") {
+            const items = await listAudiences();
+            sendResponse({ ok: true, items });
+        } else if (msg?.type === "ADD_AUDIENCE") {
+            const res = await addAudience(msg?.payload?.name);
+            sendResponse(res);
         }
     })();
     return true; // async
