@@ -133,7 +133,7 @@ async function addAudience(nameRaw) {
 
     arr.push(name);
     await setLocal(AUDIENCES_KEY, arr);
-    if (typeof writeLog === "function") await writeLog("Audience added", { name });
+    if (typeof writeLog === "function") await writeLog("Audience added");
 
     // notifier les vues si besoin
     chrome.runtime.sendMessage({ type: "AUDIENCES_UPDATED" }).catch(() => { });

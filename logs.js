@@ -56,6 +56,10 @@ chrome.storage.onChanged.addListener((changes, area) => {
     if (area === "local" && changes.logs) {
         render(changes.logs.newValue || []);
     }
+    if (area === "local" && changes.settings_global) {
+        const g = changes.settings_global.newValue || {};
+        setThemeUI(g.theme || "light");
+    }
 });
 
 const clearBtn = document.getElementById("clear-logs-button")

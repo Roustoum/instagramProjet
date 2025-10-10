@@ -171,7 +171,6 @@ chrome.storage.onChanged.addListener((changes, area) => {
     }
     if (area === "local" && changes.settings_global) {
         const g = changes.settings_global.newValue || {};
-        console.log("Theme changed to", g.theme)
         setThemeUI(g.theme || "light");
     }
 });

@@ -44,12 +44,23 @@ document.querySelectorAll('.new-campaign').forEach(btn => {
     };
 });
 
-const logo = document.getElementById('logo');
-logo.onclick = () => {
-    if (document.documentElement.classList.contains("dark"))
-        document.documentElement.classList.remove("dark")
-    else {
+function setThemeUI(theme) {
+    if (theme === "dark")
         document.documentElement.classList.add("dark")
+    else {
+        document.documentElement.classList.remove("dark")
     }
-
 }
+
+chrome.storage.onChanged.addListener((changes, area) => {
+    if (area === "local" && changes.settings_global) {
+        const g = changes.settings_global.newValue || {};
+        setThemeUI(g.theme || "light");
+    }
+});
+
+chrome.runtime.sendMessage({ type: "GET_SETTINGS" }, (res) => {
+    if (!res?.ok) return;
+    const g = res.global || {};
+    setThemeUI(g.theme || "light");
+})
