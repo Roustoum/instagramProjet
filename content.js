@@ -111,8 +111,12 @@ function getInstagramUsername() {
                 mixBlendMode: 'normal',
                 filter: 'none',
                 colorScheme: 'light',
+                overflow: 'visible',
+                backgroundColor: 'transparent',
+                pointerEvents: 'none',
             });
             overlay.style.setProperty('background-color', 'transparent', 'important');
+            overlay.setAttribute('allowtransparency', 'true');
 
             document.body.appendChild(toggleBtn);
             document.body.appendChild(overlay);
